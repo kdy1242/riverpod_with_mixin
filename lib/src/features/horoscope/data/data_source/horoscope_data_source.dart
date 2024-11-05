@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:riverpod_with_mixin/src/features/data/model/horoscope_result_model.dart';
+import 'package:riverpod_with_mixin/src/features/horoscope/data/model/horoscope_result_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'horoscope_data_source.g.dart';
