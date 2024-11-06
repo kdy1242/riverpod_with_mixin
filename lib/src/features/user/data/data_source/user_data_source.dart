@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:riverpod_with_mixin/src/features/user/data/model/user_form_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'user_data_source.g.dart';
@@ -7,13 +8,7 @@ part 'user_data_source.g.dart';
 UserDataSource userDataSource(UserDataSourceRef ref) => UserDataSourceImpl();
 
 abstract class UserDataSource {
-  Future<void> saveUserInfo({
-    required String name,
-    required int gender,
-    required DateTime birth,
-    required String email,
-    required int resultIndex,
-  });
+  Future<void> saveUserInfo(UserFormModel form);
 
   Future<int?> checkPreviousResult({
     required String name,
@@ -26,19 +21,13 @@ class UserDataSourceImpl implements UserDataSource {
   final userTable = Supabase.instance.client.from('users');
 
   @override
-  Future<void> saveUserInfo({
-    required String name,
-    required int gender,
-    required DateTime birth,
-    required String email,
-    required int resultIndex,
-  }) async {
+  Future<void> saveUserInfo(UserFormModel form) async {
     await userTable.insert({
-      'name': name,
-      'gender': gender,
-      'birth': birth.toIso8601String(),
-      'email': email,
-      'result_index': resultIndex,
+      'name': form.name,
+      'gender': form.gender,
+      'birth': form.birth,
+      'email': form.email,
+      'result_index': form.resultIndex,
     });
   }
 

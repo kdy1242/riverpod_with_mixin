@@ -21,7 +21,7 @@ extension UserFormExtension on UserForm {
     return UserFormModel(
       name: name,
       gender: gender,
-      birth: DateTime.parse(birth),
+      birth: DateTime.parse(birth).toIso8601String(),
       email: email,
       resultIndex: resultIndex,
     );

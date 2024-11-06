@@ -6,7 +6,7 @@ part of 'user_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$saveUserInfoHash() => r'f7dae0cfaf7545a75104dacd951493e18f28f785';
+String _$saveUserInfoHash() => r'21b4ad8646d53adc79bd10276ef8d462b1b53e83';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -40,18 +40,10 @@ class SaveUserInfoFamily extends Family<AsyncValue<void>> {
 
   /// See also [saveUserInfo].
   SaveUserInfoProvider call({
-    required String userName,
-    required int gender,
-    required String birth,
-    required String email,
-    required int resultIndex,
+    required UserForm form,
   }) {
     return SaveUserInfoProvider(
-      userName: userName,
-      gender: gender,
-      birth: birth,
-      email: email,
-      resultIndex: resultIndex,
+      form: form,
     );
   }
 
@@ -60,11 +52,7 @@ class SaveUserInfoFamily extends Family<AsyncValue<void>> {
     covariant SaveUserInfoProvider provider,
   ) {
     return call(
-      userName: provider.userName,
-      gender: provider.gender,
-      birth: provider.birth,
-      email: provider.email,
-      resultIndex: provider.resultIndex,
+      form: provider.form,
     );
   }
 
@@ -87,19 +75,11 @@ class SaveUserInfoFamily extends Family<AsyncValue<void>> {
 class SaveUserInfoProvider extends AutoDisposeFutureProvider<void> {
   /// See also [saveUserInfo].
   SaveUserInfoProvider({
-    required String userName,
-    required int gender,
-    required String birth,
-    required String email,
-    required int resultIndex,
+    required UserForm form,
   }) : this._internal(
           (ref) => saveUserInfo(
             ref as SaveUserInfoRef,
-            userName: userName,
-            gender: gender,
-            birth: birth,
-            email: email,
-            resultIndex: resultIndex,
+            form: form,
           ),
           from: saveUserInfoProvider,
           name: r'saveUserInfoProvider',
@@ -110,11 +90,7 @@ class SaveUserInfoProvider extends AutoDisposeFutureProvider<void> {
           dependencies: SaveUserInfoFamily._dependencies,
           allTransitiveDependencies:
               SaveUserInfoFamily._allTransitiveDependencies,
-          userName: userName,
-          gender: gender,
-          birth: birth,
-          email: email,
-          resultIndex: resultIndex,
+          form: form,
         );
 
   SaveUserInfoProvider._internal(
@@ -124,18 +100,10 @@ class SaveUserInfoProvider extends AutoDisposeFutureProvider<void> {
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.userName,
-    required this.gender,
-    required this.birth,
-    required this.email,
-    required this.resultIndex,
+    required this.form,
   }) : super.internal();
 
-  final String userName;
-  final int gender;
-  final String birth;
-  final String email;
-  final int resultIndex;
+  final UserForm form;
 
   @override
   Override overrideWith(
@@ -150,11 +118,7 @@ class SaveUserInfoProvider extends AutoDisposeFutureProvider<void> {
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        userName: userName,
-        gender: gender,
-        birth: birth,
-        email: email,
-        resultIndex: resultIndex,
+        form: form,
       ),
     );
   }
@@ -166,42 +130,21 @@ class SaveUserInfoProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   bool operator ==(Object other) {
-    return other is SaveUserInfoProvider &&
-        other.userName == userName &&
-        other.gender == gender &&
-        other.birth == birth &&
-        other.email == email &&
-        other.resultIndex == resultIndex;
+    return other is SaveUserInfoProvider && other.form == form;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, userName.hashCode);
-    hash = _SystemHash.combine(hash, gender.hashCode);
-    hash = _SystemHash.combine(hash, birth.hashCode);
-    hash = _SystemHash.combine(hash, email.hashCode);
-    hash = _SystemHash.combine(hash, resultIndex.hashCode);
+    hash = _SystemHash.combine(hash, form.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin SaveUserInfoRef on AutoDisposeFutureProviderRef<void> {
-  /// The parameter `userName` of this provider.
-  String get userName;
-
-  /// The parameter `gender` of this provider.
-  int get gender;
-
-  /// The parameter `birth` of this provider.
-  String get birth;
-
-  /// The parameter `email` of this provider.
-  String get email;
-
-  /// The parameter `resultIndex` of this provider.
-  int get resultIndex;
+  /// The parameter `form` of this provider.
+  UserForm get form;
 }
 
 class _SaveUserInfoProviderElement
@@ -209,15 +152,7 @@ class _SaveUserInfoProviderElement
   _SaveUserInfoProviderElement(super.provider);
 
   @override
-  String get userName => (origin as SaveUserInfoProvider).userName;
-  @override
-  int get gender => (origin as SaveUserInfoProvider).gender;
-  @override
-  String get birth => (origin as SaveUserInfoProvider).birth;
-  @override
-  String get email => (origin as SaveUserInfoProvider).email;
-  @override
-  int get resultIndex => (origin as SaveUserInfoProvider).resultIndex;
+  UserForm get form => (origin as SaveUserInfoProvider).form;
 }
 
 String _$checkPreviousResultHash() =>

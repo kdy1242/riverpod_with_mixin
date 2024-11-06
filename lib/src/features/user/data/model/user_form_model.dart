@@ -1,7 +1,7 @@
 class UserFormModel {
   String name;
   int gender;
-  DateTime birth;
+  String birth;
   String email;
   int resultIndex;
 
