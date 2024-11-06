@@ -19,6 +19,6 @@ class HoroscopeRepositoryImpl implements HoroscopeRepository {
   final HoroscopeDataSource _source;
 
   @override
-  Future<HoroscopeResult> getResult() async =>
-      (await _source.getResult()).toEntity();
+  Future<HoroscopeResult> getResult(int index) async =>
+      (await _source.getResult(index)).toEntity();
 }

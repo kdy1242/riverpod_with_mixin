@@ -5,7 +5,10 @@ import 'package:riverpod_with_mixin/src/features/horoscope/domain/entity/horosco
 part 'horoscope_usecase.g.dart';
 
 @riverpod
-Future<HoroscopeResult> getResultUsecase(GetResultUsecaseRef ref) async {
+Future<HoroscopeResult> getResultUsecase(
+  GetResultUsecaseRef ref, {
+  required int index,
+}) async {
   final repository = ref.watch(horoscopeRepositoryProvider);
-  return repository.getResult();
+  return repository.getResult(index);
 }
