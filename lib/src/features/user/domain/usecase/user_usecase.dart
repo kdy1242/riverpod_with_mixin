@@ -21,3 +21,18 @@ Future<void> saveUserInfoUsecase(
     resultIndex: resultIndex,
   );
 }
+
+@riverpod
+Future<int?> checkPreviousResultUsecase(
+  CheckPreviousResultUsecaseRef ref, {
+  required String userName,
+  required int gender,
+  required DateTime birth,
+}) {
+  final repository = ref.watch(userRepositoryProvider);
+  return repository.checkPreviousResult(
+    name: userName,
+    gender: gender,
+    birth: birth,
+  );
+}

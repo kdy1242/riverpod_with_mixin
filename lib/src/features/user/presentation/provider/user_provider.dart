@@ -22,3 +22,17 @@ Future<void> saveUserInfo(
     ).future,
   );
 }
+
+@riverpod
+Future<int?> checkPreviousResult(
+  CheckPreviousResultRef ref, {
+  required String userName,
+  required int gender,
+  required DateTime birth,
+}) async {
+  return ref.watch(checkPreviousResultUsecaseProvider(
+    userName: userName,
+    gender: gender,
+    birth: birth,
+  ).future);
+}

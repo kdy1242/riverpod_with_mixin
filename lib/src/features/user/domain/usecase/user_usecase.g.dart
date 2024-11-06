@@ -220,5 +220,170 @@ class _SaveUserInfoUsecaseProviderElement
   @override
   int get resultIndex => (origin as SaveUserInfoUsecaseProvider).resultIndex;
 }
+
+String _$checkPreviousResultUsecaseHash() =>
+    r'ddcee4bc6154ca98cbaa062231fa3580cceb7bbb';
+
+/// See also [checkPreviousResultUsecase].
+@ProviderFor(checkPreviousResultUsecase)
+const checkPreviousResultUsecaseProvider = CheckPreviousResultUsecaseFamily();
+
+/// See also [checkPreviousResultUsecase].
+class CheckPreviousResultUsecaseFamily extends Family<AsyncValue<int?>> {
+  /// See also [checkPreviousResultUsecase].
+  const CheckPreviousResultUsecaseFamily();
+
+  /// See also [checkPreviousResultUsecase].
+  CheckPreviousResultUsecaseProvider call({
+    required String userName,
+    required int gender,
+    required DateTime birth,
+  }) {
+    return CheckPreviousResultUsecaseProvider(
+      userName: userName,
+      gender: gender,
+      birth: birth,
+    );
+  }
+
+  @override
+  CheckPreviousResultUsecaseProvider getProviderOverride(
+    covariant CheckPreviousResultUsecaseProvider provider,
+  ) {
+    return call(
+      userName: provider.userName,
+      gender: provider.gender,
+      birth: provider.birth,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'checkPreviousResultUsecaseProvider';
+}
+
+/// See also [checkPreviousResultUsecase].
+class CheckPreviousResultUsecaseProvider
+    extends AutoDisposeFutureProvider<int?> {
+  /// See also [checkPreviousResultUsecase].
+  CheckPreviousResultUsecaseProvider({
+    required String userName,
+    required int gender,
+    required DateTime birth,
+  }) : this._internal(
+          (ref) => checkPreviousResultUsecase(
+            ref as CheckPreviousResultUsecaseRef,
+            userName: userName,
+            gender: gender,
+            birth: birth,
+          ),
+          from: checkPreviousResultUsecaseProvider,
+          name: r'checkPreviousResultUsecaseProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$checkPreviousResultUsecaseHash,
+          dependencies: CheckPreviousResultUsecaseFamily._dependencies,
+          allTransitiveDependencies:
+              CheckPreviousResultUsecaseFamily._allTransitiveDependencies,
+          userName: userName,
+          gender: gender,
+          birth: birth,
+        );
+
+  CheckPreviousResultUsecaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.userName,
+    required this.gender,
+    required this.birth,
+  }) : super.internal();
+
+  final String userName;
+  final int gender;
+  final DateTime birth;
+
+  @override
+  Override overrideWith(
+    FutureOr<int?> Function(CheckPreviousResultUsecaseRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CheckPreviousResultUsecaseProvider._internal(
+        (ref) => create(ref as CheckPreviousResultUsecaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        userName: userName,
+        gender: gender,
+        birth: birth,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<int?> createElement() {
+    return _CheckPreviousResultUsecaseProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is CheckPreviousResultUsecaseProvider &&
+        other.userName == userName &&
+        other.gender == gender &&
+        other.birth == birth;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, userName.hashCode);
+    hash = _SystemHash.combine(hash, gender.hashCode);
+    hash = _SystemHash.combine(hash, birth.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin CheckPreviousResultUsecaseRef on AutoDisposeFutureProviderRef<int?> {
+  /// The parameter `userName` of this provider.
+  String get userName;
+
+  /// The parameter `gender` of this provider.
+  int get gender;
+
+  /// The parameter `birth` of this provider.
+  DateTime get birth;
+}
+
+class _CheckPreviousResultUsecaseProviderElement
+    extends AutoDisposeFutureProviderElement<int?>
+    with CheckPreviousResultUsecaseRef {
+  _CheckPreviousResultUsecaseProviderElement(super.provider);
+
+  @override
+  String get userName =>
+      (origin as CheckPreviousResultUsecaseProvider).userName;
+  @override
+  int get gender => (origin as CheckPreviousResultUsecaseProvider).gender;
+  @override
+  DateTime get birth => (origin as CheckPreviousResultUsecaseProvider).birth;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

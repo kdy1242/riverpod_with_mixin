@@ -30,4 +30,16 @@ class UserRepositoryImpl implements UserRepository {
         email: email,
         resultIndex: resultIndex,
       );
+
+  @override
+  Future<int?> checkPreviousResult({
+    required String name,
+    required int gender,
+    required DateTime birth,
+  }) async =>
+      await _source.checkPreviousResult(
+        name: name,
+        gender: gender,
+        birth: birth,
+      );
 }

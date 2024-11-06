@@ -14,6 +14,12 @@ abstract class UserDataSource {
     required String email,
     required int resultIndex,
   });
+
+  Future<int?> checkPreviousResult({
+    required String name,
+    required int gender,
+    required DateTime birth,
+  });
 }
 
 class UserDataSourceImpl implements UserDataSource {
@@ -34,5 +40,23 @@ class UserDataSourceImpl implements UserDataSource {
       'email': email,
       'result_index': resultIndex,
     });
+  }
+
+  @override
+  Future<int?> checkPreviousResult({
+    required String name,
+    required int gender,
+    required DateTime birth,
+  }) async {
+    final res = await userTable
+        .select()
+        .eq('name', name)
+        .eq('gender', gender)
+        .eq('birth', birth.toIso8601String());
+
+    if (res.isNotEmpty) {
+      return res.first['result_index'];
+    }
+    return null;
   }
 }
