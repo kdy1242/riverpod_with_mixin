@@ -22,20 +22,27 @@ mixin class RegisterInfoEvent {
     required String birth,
     required String email,
   }) async {
-    final randomIndex = Random().nextInt(9);
+    int resultIndex = Random().nextInt(9);
 
-    await ref.watch(saveUserInfoProvider(
-      form: UserForm(
-        name: userName,
-        gender: gender,
-        birth: birth,
-        email: email,
-        resultIndex: randomIndex,
-      ),
-    ).future);
+    final form = UserForm(
+      name: userName,
+      gender: gender,
+      birth: birth,
+      email: email,
+      resultIndex: resultIndex,
+    );
+
+    int? previousResult =
+        await ref.read(checkPreviousResultProvider(form: form).future);
+
+    if (previousResult != null) {
+      resultIndex = previousResult;
+    } else {
+      await ref.watch(saveUserInfoProvider(form: form).future);
+    }
 
     final result =
-        await ref.watch(getResultProvider(index: randomIndex).future);
+        await ref.watch(getResultProvider(index: resultIndex).future);
 
     if (!context.mounted) return;
     Navigator.of(context).push(MaterialPageRoute(

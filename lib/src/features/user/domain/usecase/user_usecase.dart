@@ -16,14 +16,8 @@ Future<void> saveUserInfoUsecase(
 @riverpod
 Future<int?> checkPreviousResultUsecase(
   CheckPreviousResultUsecaseRef ref, {
-  required String userName,
-  required int gender,
-  required DateTime birth,
+  required UserForm form,
 }) {
   final repository = ref.watch(userRepositoryProvider);
-  return repository.checkPreviousResult(
-    name: userName,
-    gender: gender,
-    birth: birth,
-  );
+  return repository.checkPreviousResult(form);
 }

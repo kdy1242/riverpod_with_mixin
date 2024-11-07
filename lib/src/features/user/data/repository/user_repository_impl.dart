@@ -21,14 +21,6 @@ class UserRepositoryImpl implements UserRepository {
       await _source.saveUserInfo(form.toModel());
 
   @override
-  Future<int?> checkPreviousResult({
-    required String name,
-    required int gender,
-    required DateTime birth,
-  }) async =>
-      await _source.checkPreviousResult(
-        name: name,
-        gender: gender,
-        birth: birth,
-      );
+  Future<int?> checkPreviousResult(UserForm form) async =>
+      await _source.checkPreviousResult(form.toModel());
 }

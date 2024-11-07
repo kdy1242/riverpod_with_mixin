@@ -156,7 +156,7 @@ class _SaveUserInfoProviderElement
 }
 
 String _$checkPreviousResultHash() =>
-    r'f7dcbb3acbd406d875384de2d1b5896d52123e84';
+    r'2399934e5b81e9278491f7ec394b80f1e556dd9c';
 
 /// See also [checkPreviousResult].
 @ProviderFor(checkPreviousResult)
@@ -169,14 +169,10 @@ class CheckPreviousResultFamily extends Family<AsyncValue<int?>> {
 
   /// See also [checkPreviousResult].
   CheckPreviousResultProvider call({
-    required String userName,
-    required int gender,
-    required DateTime birth,
+    required UserForm form,
   }) {
     return CheckPreviousResultProvider(
-      userName: userName,
-      gender: gender,
-      birth: birth,
+      form: form,
     );
   }
 
@@ -185,9 +181,7 @@ class CheckPreviousResultFamily extends Family<AsyncValue<int?>> {
     covariant CheckPreviousResultProvider provider,
   ) {
     return call(
-      userName: provider.userName,
-      gender: provider.gender,
-      birth: provider.birth,
+      form: provider.form,
     );
   }
 
@@ -210,15 +204,11 @@ class CheckPreviousResultFamily extends Family<AsyncValue<int?>> {
 class CheckPreviousResultProvider extends AutoDisposeFutureProvider<int?> {
   /// See also [checkPreviousResult].
   CheckPreviousResultProvider({
-    required String userName,
-    required int gender,
-    required DateTime birth,
+    required UserForm form,
   }) : this._internal(
           (ref) => checkPreviousResult(
             ref as CheckPreviousResultRef,
-            userName: userName,
-            gender: gender,
-            birth: birth,
+            form: form,
           ),
           from: checkPreviousResultProvider,
           name: r'checkPreviousResultProvider',
@@ -229,9 +219,7 @@ class CheckPreviousResultProvider extends AutoDisposeFutureProvider<int?> {
           dependencies: CheckPreviousResultFamily._dependencies,
           allTransitiveDependencies:
               CheckPreviousResultFamily._allTransitiveDependencies,
-          userName: userName,
-          gender: gender,
-          birth: birth,
+          form: form,
         );
 
   CheckPreviousResultProvider._internal(
@@ -241,14 +229,10 @@ class CheckPreviousResultProvider extends AutoDisposeFutureProvider<int?> {
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.userName,
-    required this.gender,
-    required this.birth,
+    required this.form,
   }) : super.internal();
 
-  final String userName;
-  final int gender;
-  final DateTime birth;
+  final UserForm form;
 
   @override
   Override overrideWith(
@@ -263,9 +247,7 @@ class CheckPreviousResultProvider extends AutoDisposeFutureProvider<int?> {
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        userName: userName,
-        gender: gender,
-        birth: birth,
+        form: form,
       ),
     );
   }
@@ -277,32 +259,21 @@ class CheckPreviousResultProvider extends AutoDisposeFutureProvider<int?> {
 
   @override
   bool operator ==(Object other) {
-    return other is CheckPreviousResultProvider &&
-        other.userName == userName &&
-        other.gender == gender &&
-        other.birth == birth;
+    return other is CheckPreviousResultProvider && other.form == form;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, userName.hashCode);
-    hash = _SystemHash.combine(hash, gender.hashCode);
-    hash = _SystemHash.combine(hash, birth.hashCode);
+    hash = _SystemHash.combine(hash, form.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin CheckPreviousResultRef on AutoDisposeFutureProviderRef<int?> {
-  /// The parameter `userName` of this provider.
-  String get userName;
-
-  /// The parameter `gender` of this provider.
-  int get gender;
-
-  /// The parameter `birth` of this provider.
-  DateTime get birth;
+  /// The parameter `form` of this provider.
+  UserForm get form;
 }
 
 class _CheckPreviousResultProviderElement
@@ -310,11 +281,7 @@ class _CheckPreviousResultProviderElement
   _CheckPreviousResultProviderElement(super.provider);
 
   @override
-  String get userName => (origin as CheckPreviousResultProvider).userName;
-  @override
-  int get gender => (origin as CheckPreviousResultProvider).gender;
-  @override
-  DateTime get birth => (origin as CheckPreviousResultProvider).birth;
+  UserForm get form => (origin as CheckPreviousResultProvider).form;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

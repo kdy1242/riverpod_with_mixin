@@ -157,7 +157,7 @@ class _SaveUserInfoUsecaseProviderElement
 }
 
 String _$checkPreviousResultUsecaseHash() =>
-    r'ddcee4bc6154ca98cbaa062231fa3580cceb7bbb';
+    r'04f37f01e1d61a92268d52c854f9b01fe618d7a2';
 
 /// See also [checkPreviousResultUsecase].
 @ProviderFor(checkPreviousResultUsecase)
@@ -170,14 +170,10 @@ class CheckPreviousResultUsecaseFamily extends Family<AsyncValue<int?>> {
 
   /// See also [checkPreviousResultUsecase].
   CheckPreviousResultUsecaseProvider call({
-    required String userName,
-    required int gender,
-    required DateTime birth,
+    required UserForm form,
   }) {
     return CheckPreviousResultUsecaseProvider(
-      userName: userName,
-      gender: gender,
-      birth: birth,
+      form: form,
     );
   }
 
@@ -186,9 +182,7 @@ class CheckPreviousResultUsecaseFamily extends Family<AsyncValue<int?>> {
     covariant CheckPreviousResultUsecaseProvider provider,
   ) {
     return call(
-      userName: provider.userName,
-      gender: provider.gender,
-      birth: provider.birth,
+      form: provider.form,
     );
   }
 
@@ -212,15 +206,11 @@ class CheckPreviousResultUsecaseProvider
     extends AutoDisposeFutureProvider<int?> {
   /// See also [checkPreviousResultUsecase].
   CheckPreviousResultUsecaseProvider({
-    required String userName,
-    required int gender,
-    required DateTime birth,
+    required UserForm form,
   }) : this._internal(
           (ref) => checkPreviousResultUsecase(
             ref as CheckPreviousResultUsecaseRef,
-            userName: userName,
-            gender: gender,
-            birth: birth,
+            form: form,
           ),
           from: checkPreviousResultUsecaseProvider,
           name: r'checkPreviousResultUsecaseProvider',
@@ -231,9 +221,7 @@ class CheckPreviousResultUsecaseProvider
           dependencies: CheckPreviousResultUsecaseFamily._dependencies,
           allTransitiveDependencies:
               CheckPreviousResultUsecaseFamily._allTransitiveDependencies,
-          userName: userName,
-          gender: gender,
-          birth: birth,
+          form: form,
         );
 
   CheckPreviousResultUsecaseProvider._internal(
@@ -243,14 +231,10 @@ class CheckPreviousResultUsecaseProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.userName,
-    required this.gender,
-    required this.birth,
+    required this.form,
   }) : super.internal();
 
-  final String userName;
-  final int gender;
-  final DateTime birth;
+  final UserForm form;
 
   @override
   Override overrideWith(
@@ -265,9 +249,7 @@ class CheckPreviousResultUsecaseProvider
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        userName: userName,
-        gender: gender,
-        birth: birth,
+        form: form,
       ),
     );
   }
@@ -279,32 +261,21 @@ class CheckPreviousResultUsecaseProvider
 
   @override
   bool operator ==(Object other) {
-    return other is CheckPreviousResultUsecaseProvider &&
-        other.userName == userName &&
-        other.gender == gender &&
-        other.birth == birth;
+    return other is CheckPreviousResultUsecaseProvider && other.form == form;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, userName.hashCode);
-    hash = _SystemHash.combine(hash, gender.hashCode);
-    hash = _SystemHash.combine(hash, birth.hashCode);
+    hash = _SystemHash.combine(hash, form.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin CheckPreviousResultUsecaseRef on AutoDisposeFutureProviderRef<int?> {
-  /// The parameter `userName` of this provider.
-  String get userName;
-
-  /// The parameter `gender` of this provider.
-  int get gender;
-
-  /// The parameter `birth` of this provider.
-  DateTime get birth;
+  /// The parameter `form` of this provider.
+  UserForm get form;
 }
 
 class _CheckPreviousResultUsecaseProviderElement
@@ -313,12 +284,7 @@ class _CheckPreviousResultUsecaseProviderElement
   _CheckPreviousResultUsecaseProviderElement(super.provider);
 
   @override
-  String get userName =>
-      (origin as CheckPreviousResultUsecaseProvider).userName;
-  @override
-  int get gender => (origin as CheckPreviousResultUsecaseProvider).gender;
-  @override
-  DateTime get birth => (origin as CheckPreviousResultUsecaseProvider).birth;
+  UserForm get form => (origin as CheckPreviousResultUsecaseProvider).form;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

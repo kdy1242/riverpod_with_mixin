@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod_with_mixin/src/features/horoscope/presentation/page/register_info_page.dart';
+import 'package:riverpod_with_mixin/src/features/user/presentation/page/register_info_page.dart';
 
 mixin class AppEvent {
   void goToRegisterInfoPage(BuildContext context) {

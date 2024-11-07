@@ -10,11 +10,7 @@ UserDataSource userDataSource(UserDataSourceRef ref) => UserDataSourceImpl();
 abstract class UserDataSource {
   Future<void> saveUserInfo(UserFormModel form);
 
-  Future<int?> checkPreviousResult({
-    required String name,
-    required int gender,
-    required DateTime birth,
-  });
+  Future<int?> checkPreviousResult(UserFormModel form);
 }
 
 class UserDataSourceImpl implements UserDataSource {
@@ -32,16 +28,12 @@ class UserDataSourceImpl implements UserDataSource {
   }
 
   @override
-  Future<int?> checkPreviousResult({
-    required String name,
-    required int gender,
-    required DateTime birth,
-  }) async {
+  Future<int?> checkPreviousResult(UserFormModel form) async {
     final res = await userTable
         .select()
-        .eq('name', name)
-        .eq('gender', gender)
-        .eq('birth', birth.toIso8601String());
+        .eq('name', form.name)
+        .eq('gender', form.gender)
+        .eq('birth', form.birth);
 
     if (res.isNotEmpty) {
       return res.first['result_index'];

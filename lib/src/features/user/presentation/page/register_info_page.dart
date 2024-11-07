@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_with_mixin/src/features/horoscope/presentation/mixin/register_info_event.dart';
+import 'package:riverpod_with_mixin/src/features/user/presentation/mixin/register_info_event.dart';
 
 class RegisterInfoPage extends HookConsumerWidget with RegisterInfoEvent {
   const RegisterInfoPage({super.key});

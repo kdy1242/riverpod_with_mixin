@@ -3,9 +3,5 @@ import 'package:riverpod_with_mixin/src/features/user/domain/entity/user_form.da
 abstract class UserRepository {
   Future<void> saveUserInfo(UserForm form);
 
-  Future<int?> checkPreviousResult({
-    required String name,
-    required int gender,
-    required DateTime birth,
-  });
+  Future<int?> checkPreviousResult(UserForm form);
 }
