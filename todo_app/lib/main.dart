@@ -23,6 +23,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: App());
+    return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: false,
+        scaffoldBackgroundColor: Colors.grey[100],
+      ),
+      home: const App(),
+    );
   }
 }
