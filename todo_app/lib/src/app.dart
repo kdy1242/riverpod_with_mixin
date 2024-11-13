@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       showModalBottomSheet(
         context: context,
         backgroundColor: Colors.transparent,
-        builder: (context) => RegisterTodoBottomSheet(),
+        builder: (context) => const RegisterTodoBottomSheet(),
       );
     }
 

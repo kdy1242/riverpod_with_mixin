@@ -15,7 +15,7 @@ class RegisterTodoBottomSheet extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
             const Text(
               'TODO',
               style: TextStyle(fontSize: 20),
