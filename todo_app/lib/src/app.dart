@@ -28,6 +28,7 @@ class App extends StatelessWidget {
           icon: TodoFilter.values[index].icon,
           iconBackgroundColor: TodoFilter.values[index].color,
           count: 5,
+          onTap: () {},
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
