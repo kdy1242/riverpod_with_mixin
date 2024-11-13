@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0",
+    "configurations": [
+        {
+            "name": "horoscope",
+            "cwd": "horoscope",
+            "request": "launch",
+            "type": "dart",
+        },
+        {
+            "name": "todo_app",
+            "cwd": "todo_app",
+            "request": "launch",
+            "type": "dart",
+        },
+    ]
+}

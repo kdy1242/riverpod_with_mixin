@@ -1,3 +1,3 @@
 # riverpod_with_mixin
----
-supabase + clean architecture + riverpod + mixin 취업운 앱 예제
+
+supabase + clean architecture + riverpod + mixin 예제 앱 레포
