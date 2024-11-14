@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/enum/menu_type.dart';
+import 'package:todo_app/src/features/todo/presentation/mixin/todo_home_event.dart';
 import 'package:todo_app/src/features/todo/presentation/widget/filter_menu_card.dart';
-import 'package:todo_app/src/features/todo/presentation/widget/register_todo_bottom_sheet.dart';
 
-class App extends StatelessWidget {
-  const App({super.key});
+class TodoHomePage extends StatelessWidget with TodoHomeEvent {
+  const TodoHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    void showRegisterTodoBottomSheet() {
-      showModalBottomSheet(
-        context: context,
-        backgroundColor: Colors.transparent,
-        builder: (context) => const RegisterTodoBottomSheet(),
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('todo'),
@@ -42,7 +34,7 @@ class App extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         elevation: 0,
-        onPressed: showRegisterTodoBottomSheet,
+        onPressed: () => showRegisterTodoBottomSheet(context),
         label: const Row(
           children: [
             Icon(Icons.add),
