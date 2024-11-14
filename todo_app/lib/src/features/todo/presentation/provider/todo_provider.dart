@@ -13,7 +13,27 @@ Future<void> createTodo(
     ref.watch(createTodoUsecaseProvider(text: text, date: date).future);
 
 @riverpod
-class TodayTodo extends _$TodayTodo {
+class TodayTodoList extends _$TodayTodoList {
   @override
   Future<List<Todo>> build() => ref.watch(readTodayTodoUsecaseProvider.future);
+}
+
+@riverpod
+class UpcomingTodoList extends _$UpcomingTodoList {
+  @override
+  Future<List<Todo>> build() =>
+      ref.watch(readUpcomingTodoUsecaseProvider.future);
+}
+
+@riverpod
+class AllTodoList extends _$AllTodoList {
+  @override
+  Future<List<Todo>> build() => ref.watch(readAllTodoUsecaseProvider.future);
+}
+
+@riverpod
+class CompletedTodoList extends _$CompletedTodoList {
+  @override
+  Future<List<Todo>> build() =>
+      ref.watch(readCompletedTodoUsecaseProvider.future);
 }

@@ -172,20 +172,68 @@ class _CreateTodoProviderElement extends AutoDisposeFutureProviderElement<void>
   DateTime get date => (origin as CreateTodoProvider).date;
 }
 
-String _$todayTodoHash() => r'b8a54578e6a736d8ba8c74654e336a09a971baf5';
+String _$todayTodoListHash() => r'6edb5493ad6fcc3f2b8674bc48f7581d47d12d2a';
 
-/// See also [TodayTodo].
-@ProviderFor(TodayTodo)
-final todayTodoProvider =
-    AutoDisposeAsyncNotifierProvider<TodayTodo, List<Todo>>.internal(
-  TodayTodo.new,
-  name: r'todayTodoProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$todayTodoHash,
+/// See also [TodayTodoList].
+@ProviderFor(TodayTodoList)
+final todayTodoListProvider =
+    AutoDisposeAsyncNotifierProvider<TodayTodoList, List<Todo>>.internal(
+  TodayTodoList.new,
+  name: r'todayTodoListProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$todayTodoListHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$TodayTodo = AutoDisposeAsyncNotifier<List<Todo>>;
+typedef _$TodayTodoList = AutoDisposeAsyncNotifier<List<Todo>>;
+String _$upcomingTodoListHash() => r'ae4b8ec599dc9fdd03da656940c121c07e73a29f';
+
+/// See also [UpcomingTodoList].
+@ProviderFor(UpcomingTodoList)
+final upcomingTodoListProvider =
+    AutoDisposeAsyncNotifierProvider<UpcomingTodoList, List<Todo>>.internal(
+  UpcomingTodoList.new,
+  name: r'upcomingTodoListProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$upcomingTodoListHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$UpcomingTodoList = AutoDisposeAsyncNotifier<List<Todo>>;
+String _$allTodoListHash() => r'276c7fc195e48d9036841ee3051cb4f6e37f4cc5';
+
+/// See also [AllTodoList].
+@ProviderFor(AllTodoList)
+final allTodoListProvider =
+    AutoDisposeAsyncNotifierProvider<AllTodoList, List<Todo>>.internal(
+  AllTodoList.new,
+  name: r'allTodoListProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$allTodoListHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$AllTodoList = AutoDisposeAsyncNotifier<List<Todo>>;
+String _$completedTodoListHash() => r'a532df9ab6374d101071a0e303d2229d970b8a77';
+
+/// See also [CompletedTodoList].
+@ProviderFor(CompletedTodoList)
+final completedTodoListProvider =
+    AutoDisposeAsyncNotifierProvider<CompletedTodoList, List<Todo>>.internal(
+  CompletedTodoList.new,
+  name: r'completedTodoListProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$completedTodoListHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$CompletedTodoList = AutoDisposeAsyncNotifier<List<Todo>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -20,3 +20,21 @@ Future<List<Todo>> readTodayTodoUsecase(ReadTodayTodoUsecaseRef ref) {
   final repository = ref.watch(todoRepositoryProvider);
   return repository.readTodo(TodoFilter.today);
 }
+
+@riverpod
+Future<List<Todo>> readUpcomingTodoUsecase(ReadUpcomingTodoUsecaseRef ref) {
+  final repository = ref.watch(todoRepositoryProvider);
+  return repository.readTodo(TodoFilter.upcoming);
+}
+
+@riverpod
+Future<List<Todo>> readAllTodoUsecase(ReadAllTodoUsecaseRef ref) {
+  final repository = ref.watch(todoRepositoryProvider);
+  return repository.readTodo(TodoFilter.all);
+}
+
+@riverpod
+Future<List<Todo>> readCompletedTodoUsecase(ReadCompletedTodoUsecaseRef ref) {
+  final repository = ref.watch(todoRepositoryProvider);
+  return repository.readTodo(TodoFilter.completed);
+}

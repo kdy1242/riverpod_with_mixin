@@ -40,5 +40,11 @@ class TodoModel {
 }
 
 extension TodoModelExtension on TodoModel {
-  Todo toEntity() => Todo(id: id, createdAt: createdAt, text: text, date: date);
+  Todo toEntity() => Todo(
+        id: id,
+        createdAt: createdAt,
+        text: text,
+        date: date,
+        completedAt: completedAt,
+      );
 }

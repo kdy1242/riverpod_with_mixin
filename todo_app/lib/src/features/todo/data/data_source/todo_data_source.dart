@@ -56,7 +56,7 @@ class TodoDataSourceImpl implements TodoDataSource {
     } else if (filter == TodoFilter.upcoming) {
       query = query.gt('date', endOfToday.toIso8601String());
     } else if (filter == TodoFilter.completed) {
-      query = query.eq('isCompleted', true).not('completedAt', 'is', null);
+      query = query.not('completedAt', 'is', null);
     }
 
     final result = await query.order('date', ascending: true);
