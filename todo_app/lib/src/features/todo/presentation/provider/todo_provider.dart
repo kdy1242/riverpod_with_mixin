@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:todo_app/src/features/todo/domain/entity/todo_entity.dart';
 import 'package:todo_app/src/features/todo/domain/usecase/todo_usecase.dart';
 
 part 'todo_provider.g.dart';
@@ -10,3 +11,9 @@ Future<void> createTodo(
   required DateTime date,
 }) =>
     ref.watch(createTodoUsecaseProvider(text: text, date: date).future);
+
+@riverpod
+class TodayTodo extends _$TodayTodo {
+  @override
+  Future<List<Todo>> build() => ref.watch(readTodayTodoUsecaseProvider.future);
+}

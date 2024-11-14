@@ -171,5 +171,23 @@ class _CreateTodoUsecaseProviderElement
   @override
   DateTime get date => (origin as CreateTodoUsecaseProvider).date;
 }
+
+String _$readTodayTodoUsecaseHash() =>
+    r'428d426bf4d754b3bf4b456085c36e68166f956f';
+
+/// See also [readTodayTodoUsecase].
+@ProviderFor(readTodayTodoUsecase)
+final readTodayTodoUsecaseProvider =
+    AutoDisposeFutureProvider<List<Todo>>.internal(
+  readTodayTodoUsecase,
+  name: r'readTodayTodoUsecaseProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$readTodayTodoUsecaseHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ReadTodayTodoUsecaseRef = AutoDisposeFutureProviderRef<List<Todo>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
