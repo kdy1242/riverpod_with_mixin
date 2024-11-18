@@ -240,32 +240,31 @@ final readCompletedTodoUsecaseProvider =
 );
 
 typedef ReadCompletedTodoUsecaseRef = AutoDisposeFutureProviderRef<List<Todo>>;
-String _$completeTodoUsecaseHash() =>
-    r'e4b45262da03d7859f2bd81a9c19b4f03bf0ee2b';
+String _$checkTodoUsecaseHash() => r'5862189d0fa074640f5bdc1b544f8d9b8519423f';
 
-/// See also [completeTodoUsecase].
-@ProviderFor(completeTodoUsecase)
-const completeTodoUsecaseProvider = CompleteTodoUsecaseFamily();
+/// See also [checkTodoUsecase].
+@ProviderFor(checkTodoUsecase)
+const checkTodoUsecaseProvider = CheckTodoUsecaseFamily();
 
-/// See also [completeTodoUsecase].
-class CompleteTodoUsecaseFamily extends Family<AsyncValue<void>> {
-  /// See also [completeTodoUsecase].
-  const CompleteTodoUsecaseFamily();
+/// See also [checkTodoUsecase].
+class CheckTodoUsecaseFamily extends Family<AsyncValue<void>> {
+  /// See also [checkTodoUsecase].
+  const CheckTodoUsecaseFamily();
 
-  /// See also [completeTodoUsecase].
-  CompleteTodoUsecaseProvider call({
+  /// See also [checkTodoUsecase].
+  CheckTodoUsecaseProvider call({
     required int id,
     required bool value,
   }) {
-    return CompleteTodoUsecaseProvider(
+    return CheckTodoUsecaseProvider(
       id: id,
       value: value,
     );
   }
 
   @override
-  CompleteTodoUsecaseProvider getProviderOverride(
-    covariant CompleteTodoUsecaseProvider provider,
+  CheckTodoUsecaseProvider getProviderOverride(
+    covariant CheckTodoUsecaseProvider provider,
   ) {
     return call(
       id: provider.id,
@@ -285,35 +284,35 @@ class CompleteTodoUsecaseFamily extends Family<AsyncValue<void>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'completeTodoUsecaseProvider';
+  String? get name => r'checkTodoUsecaseProvider';
 }
 
-/// See also [completeTodoUsecase].
-class CompleteTodoUsecaseProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [completeTodoUsecase].
-  CompleteTodoUsecaseProvider({
+/// See also [checkTodoUsecase].
+class CheckTodoUsecaseProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [checkTodoUsecase].
+  CheckTodoUsecaseProvider({
     required int id,
     required bool value,
   }) : this._internal(
-          (ref) => completeTodoUsecase(
-            ref as CompleteTodoUsecaseRef,
+          (ref) => checkTodoUsecase(
+            ref as CheckTodoUsecaseRef,
             id: id,
             value: value,
           ),
-          from: completeTodoUsecaseProvider,
-          name: r'completeTodoUsecaseProvider',
+          from: checkTodoUsecaseProvider,
+          name: r'checkTodoUsecaseProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$completeTodoUsecaseHash,
-          dependencies: CompleteTodoUsecaseFamily._dependencies,
+                  : _$checkTodoUsecaseHash,
+          dependencies: CheckTodoUsecaseFamily._dependencies,
           allTransitiveDependencies:
-              CompleteTodoUsecaseFamily._allTransitiveDependencies,
+              CheckTodoUsecaseFamily._allTransitiveDependencies,
           id: id,
           value: value,
         );
 
-  CompleteTodoUsecaseProvider._internal(
+  CheckTodoUsecaseProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -329,12 +328,12 @@ class CompleteTodoUsecaseProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   Override overrideWith(
-    FutureOr<void> Function(CompleteTodoUsecaseRef provider) create,
+    FutureOr<void> Function(CheckTodoUsecaseRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: CompleteTodoUsecaseProvider._internal(
-        (ref) => create(ref as CompleteTodoUsecaseRef),
+      override: CheckTodoUsecaseProvider._internal(
+        (ref) => create(ref as CheckTodoUsecaseRef),
         from: from,
         name: null,
         dependencies: null,
@@ -348,12 +347,12 @@ class CompleteTodoUsecaseProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   AutoDisposeFutureProviderElement<void> createElement() {
-    return _CompleteTodoUsecaseProviderElement(this);
+    return _CheckTodoUsecaseProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is CompleteTodoUsecaseProvider &&
+    return other is CheckTodoUsecaseProvider &&
         other.id == id &&
         other.value == value;
   }
@@ -368,7 +367,7 @@ class CompleteTodoUsecaseProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
-mixin CompleteTodoUsecaseRef on AutoDisposeFutureProviderRef<void> {
+mixin CheckTodoUsecaseRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `id` of this provider.
   int get id;
 
@@ -376,14 +375,14 @@ mixin CompleteTodoUsecaseRef on AutoDisposeFutureProviderRef<void> {
   bool get value;
 }
 
-class _CompleteTodoUsecaseProviderElement
-    extends AutoDisposeFutureProviderElement<void> with CompleteTodoUsecaseRef {
-  _CompleteTodoUsecaseProviderElement(super.provider);
+class _CheckTodoUsecaseProviderElement
+    extends AutoDisposeFutureProviderElement<void> with CheckTodoUsecaseRef {
+  _CheckTodoUsecaseProviderElement(super.provider);
 
   @override
-  int get id => (origin as CompleteTodoUsecaseProvider).id;
+  int get id => (origin as CheckTodoUsecaseProvider).id;
   @override
-  bool get value => (origin as CompleteTodoUsecaseProvider).value;
+  bool get value => (origin as CheckTodoUsecaseProvider).value;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

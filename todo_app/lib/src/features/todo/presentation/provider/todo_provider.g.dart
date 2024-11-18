@@ -6,7 +6,7 @@ part of 'todo_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$createTodoHash() => r'12aae7a7585a2b94d073fe054706fc927a5022e2';
+String _$createTodoHash() => r'25ce0f91f39705ed0f9d6cfbe5cf5173f9faaaea';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -172,31 +172,31 @@ class _CreateTodoProviderElement extends AutoDisposeFutureProviderElement<void>
   DateTime get date => (origin as CreateTodoProvider).date;
 }
 
-String _$completeTodoHash() => r'77187a04cc8dfbd4bf139c889b332080e4e09980';
+String _$checkTodoHash() => r'1bd1efa2f955e575ce4ea345c0d6b8437a3040d4';
 
-/// See also [completeTodo].
-@ProviderFor(completeTodo)
-const completeTodoProvider = CompleteTodoFamily();
+/// See also [checkTodo].
+@ProviderFor(checkTodo)
+const checkTodoProvider = CheckTodoFamily();
 
-/// See also [completeTodo].
-class CompleteTodoFamily extends Family<AsyncValue<void>> {
-  /// See also [completeTodo].
-  const CompleteTodoFamily();
+/// See also [checkTodo].
+class CheckTodoFamily extends Family<AsyncValue<void>> {
+  /// See also [checkTodo].
+  const CheckTodoFamily();
 
-  /// See also [completeTodo].
-  CompleteTodoProvider call({
+  /// See also [checkTodo].
+  CheckTodoProvider call({
     required int id,
     required bool value,
   }) {
-    return CompleteTodoProvider(
+    return CheckTodoProvider(
       id: id,
       value: value,
     );
   }
 
   @override
-  CompleteTodoProvider getProviderOverride(
-    covariant CompleteTodoProvider provider,
+  CheckTodoProvider getProviderOverride(
+    covariant CheckTodoProvider provider,
   ) {
     return call(
       id: provider.id,
@@ -216,35 +216,34 @@ class CompleteTodoFamily extends Family<AsyncValue<void>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'completeTodoProvider';
+  String? get name => r'checkTodoProvider';
 }
 
-/// See also [completeTodo].
-class CompleteTodoProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [completeTodo].
-  CompleteTodoProvider({
+/// See also [checkTodo].
+class CheckTodoProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [checkTodo].
+  CheckTodoProvider({
     required int id,
     required bool value,
   }) : this._internal(
-          (ref) => completeTodo(
-            ref as CompleteTodoRef,
+          (ref) => checkTodo(
+            ref as CheckTodoRef,
             id: id,
             value: value,
           ),
-          from: completeTodoProvider,
-          name: r'completeTodoProvider',
+          from: checkTodoProvider,
+          name: r'checkTodoProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$completeTodoHash,
-          dependencies: CompleteTodoFamily._dependencies,
-          allTransitiveDependencies:
-              CompleteTodoFamily._allTransitiveDependencies,
+                  : _$checkTodoHash,
+          dependencies: CheckTodoFamily._dependencies,
+          allTransitiveDependencies: CheckTodoFamily._allTransitiveDependencies,
           id: id,
           value: value,
         );
 
-  CompleteTodoProvider._internal(
+  CheckTodoProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -260,12 +259,12 @@ class CompleteTodoProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   Override overrideWith(
-    FutureOr<void> Function(CompleteTodoRef provider) create,
+    FutureOr<void> Function(CheckTodoRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: CompleteTodoProvider._internal(
-        (ref) => create(ref as CompleteTodoRef),
+      override: CheckTodoProvider._internal(
+        (ref) => create(ref as CheckTodoRef),
         from: from,
         name: null,
         dependencies: null,
@@ -279,14 +278,12 @@ class CompleteTodoProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   AutoDisposeFutureProviderElement<void> createElement() {
-    return _CompleteTodoProviderElement(this);
+    return _CheckTodoProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is CompleteTodoProvider &&
-        other.id == id &&
-        other.value == value;
+    return other is CheckTodoProvider && other.id == id && other.value == value;
   }
 
   @override
@@ -299,7 +296,7 @@ class CompleteTodoProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
-mixin CompleteTodoRef on AutoDisposeFutureProviderRef<void> {
+mixin CheckTodoRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `id` of this provider.
   int get id;
 
@@ -307,17 +304,17 @@ mixin CompleteTodoRef on AutoDisposeFutureProviderRef<void> {
   bool get value;
 }
 
-class _CompleteTodoProviderElement
-    extends AutoDisposeFutureProviderElement<void> with CompleteTodoRef {
-  _CompleteTodoProviderElement(super.provider);
+class _CheckTodoProviderElement extends AutoDisposeFutureProviderElement<void>
+    with CheckTodoRef {
+  _CheckTodoProviderElement(super.provider);
 
   @override
-  int get id => (origin as CompleteTodoProvider).id;
+  int get id => (origin as CheckTodoProvider).id;
   @override
-  bool get value => (origin as CompleteTodoProvider).value;
+  bool get value => (origin as CheckTodoProvider).value;
 }
 
-String _$todoListHash() => r'6cc644cd7c24e88a6a80f13065fbf9d659e845ae';
+String _$todoListHash() => r'49bb9c0623ffaa087f81dd64402628d9e1f1ed1b';
 
 abstract class _$TodoList
     extends BuildlessAutoDisposeAsyncNotifier<List<Todo>> {

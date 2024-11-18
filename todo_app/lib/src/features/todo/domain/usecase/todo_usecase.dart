@@ -40,13 +40,13 @@ Future<List<Todo>> readCompletedTodoUsecase(ReadCompletedTodoUsecaseRef ref) {
 }
 
 @riverpod
-Future<void> completeTodoUsecase(
-  CompleteTodoUsecaseRef ref, {
+Future<void> checkTodoUsecase(
+  CheckTodoUsecaseRef ref, {
   required int id,
   required bool value,
 }) {
   final repository = ref.watch(todoRepositoryProvider);
   return repository.updateTodo(id: id, data: {
-    'completedAt': value ? DateTime.now() : null,
+    'completedAt': value ? DateTime.now().toIso8601String() : null,
   });
 }

@@ -10,8 +10,8 @@ Future<void> createTodo(
   CreateTodoRef ref, {
   required String text,
   required DateTime date,
-}) =>
-    ref.watch(createTodoUsecaseProvider(text: text, date: date).future);
+}) async =>
+    await ref.watch(createTodoUsecaseProvider(text: text, date: date).future);
 
 @riverpod
 class TodoList extends _$TodoList {
@@ -26,7 +26,7 @@ class TodoList extends _$TodoList {
     };
   }
 
-  void completeTodo({required int id, required bool value}) {
+  void checkTodo({required int id, required bool value}) {
     if (state.value != null) {
       int index = state.value!.indexWhere((e) => e.id == id);
 
@@ -38,10 +38,9 @@ class TodoList extends _$TodoList {
 }
 
 @riverpod
-Future<void> completeTodo(
-  CompleteTodoRef ref, {
+Future<void> checkTodo(
+  CheckTodoRef ref, {
   required int id,
   required bool value,
-}) {
-  return ref.watch(completeTodoUsecaseProvider(id: id, value: value).future);
-}
+}) async =>
+    await ref.watch(checkTodoUsecaseProvider(id: id, value: value).future);

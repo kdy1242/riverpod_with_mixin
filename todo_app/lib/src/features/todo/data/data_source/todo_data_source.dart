@@ -68,7 +68,7 @@ class TodoDataSourceImpl implements TodoDataSource {
     required int id,
     required Map<String, dynamic> data,
   }) async =>
-      await _table.update(data);
+      await _table.update(data).eq('id', id);
 
   @override
   Future<void> deleteTodo({required int id}) => _table.delete().eq('id', id);

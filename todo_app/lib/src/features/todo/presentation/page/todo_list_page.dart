@@ -31,8 +31,12 @@ class TodoListPage extends ConsumerWidget with TodoListState, TodoListEvent {
               todoText: data[index].text,
               date: data[index].date,
               isCompleted: data[index].completedAt != null,
-              onCheck: (value) => completeTodo(
-                  ref: ref, filter: filter, id: data[index].id, value: value),
+              onCheck: (value) => checkTodo(
+                ref: ref,
+                filter: filter,
+                id: data[index].id,
+                value: value,
+              ),
               onEdit: () {},
               onDelete: () {},
             ),
