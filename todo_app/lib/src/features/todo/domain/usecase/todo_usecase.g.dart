@@ -173,7 +173,7 @@ class _CreateTodoUsecaseProviderElement
 }
 
 String _$readTodayTodoUsecaseHash() =>
-    r'428d426bf4d754b3bf4b456085c36e68166f956f';
+    r'544c9317eeb7081aee6d0cf6b704793659ee708b';
 
 /// See also [readTodayTodoUsecase].
 @ProviderFor(readTodayTodoUsecase)
@@ -190,7 +190,7 @@ final readTodayTodoUsecaseProvider =
 
 typedef ReadTodayTodoUsecaseRef = AutoDisposeFutureProviderRef<List<Todo>>;
 String _$readUpcomingTodoUsecaseHash() =>
-    r'c0ba8840cbdb4f43f8e5ab68bd8291fdabfe1cdf';
+    r'ce63d22fc535c4c14f76a89b524c492aa0f8f5a9';
 
 /// See also [readUpcomingTodoUsecase].
 @ProviderFor(readUpcomingTodoUsecase)
@@ -207,7 +207,7 @@ final readUpcomingTodoUsecaseProvider =
 
 typedef ReadUpcomingTodoUsecaseRef = AutoDisposeFutureProviderRef<List<Todo>>;
 String _$readAllTodoUsecaseHash() =>
-    r'c74f22e0bade3fdb257abce8c6612c4de9cffb62';
+    r'6e74b8300c56706c40d334575370528fa5be841e';
 
 /// See also [readAllTodoUsecase].
 @ProviderFor(readAllTodoUsecase)
@@ -224,7 +224,7 @@ final readAllTodoUsecaseProvider =
 
 typedef ReadAllTodoUsecaseRef = AutoDisposeFutureProviderRef<List<Todo>>;
 String _$readCompletedTodoUsecaseHash() =>
-    r'da62f3a98ebdee00f14f7552249d47552eb425ef';
+    r'6a1e1b5b27e3078b5f19046c2d853dfc64693d1e';
 
 /// See also [readCompletedTodoUsecase].
 @ProviderFor(readCompletedTodoUsecase)
@@ -240,7 +240,7 @@ final readCompletedTodoUsecaseProvider =
 );
 
 typedef ReadCompletedTodoUsecaseRef = AutoDisposeFutureProviderRef<List<Todo>>;
-String _$checkTodoUsecaseHash() => r'5862189d0fa074640f5bdc1b544f8d9b8519423f';
+String _$checkTodoUsecaseHash() => r'fe15bac38ed875da4ae81400ae115fce52dbec0f';
 
 /// See also [checkTodoUsecase].
 @ProviderFor(checkTodoUsecase)
@@ -383,6 +383,134 @@ class _CheckTodoUsecaseProviderElement
   int get id => (origin as CheckTodoUsecaseProvider).id;
   @override
   bool get value => (origin as CheckTodoUsecaseProvider).value;
+}
+
+String _$deleteTodoUsecaseHash() => r'b3aca2029206e104402b5ad43fd61c8eb8577b85';
+
+/// See also [deleteTodoUsecase].
+@ProviderFor(deleteTodoUsecase)
+const deleteTodoUsecaseProvider = DeleteTodoUsecaseFamily();
+
+/// See also [deleteTodoUsecase].
+class DeleteTodoUsecaseFamily extends Family<AsyncValue<void>> {
+  /// See also [deleteTodoUsecase].
+  const DeleteTodoUsecaseFamily();
+
+  /// See also [deleteTodoUsecase].
+  DeleteTodoUsecaseProvider call({
+    required int id,
+  }) {
+    return DeleteTodoUsecaseProvider(
+      id: id,
+    );
+  }
+
+  @override
+  DeleteTodoUsecaseProvider getProviderOverride(
+    covariant DeleteTodoUsecaseProvider provider,
+  ) {
+    return call(
+      id: provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'deleteTodoUsecaseProvider';
+}
+
+/// See also [deleteTodoUsecase].
+class DeleteTodoUsecaseProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [deleteTodoUsecase].
+  DeleteTodoUsecaseProvider({
+    required int id,
+  }) : this._internal(
+          (ref) => deleteTodoUsecase(
+            ref as DeleteTodoUsecaseRef,
+            id: id,
+          ),
+          from: deleteTodoUsecaseProvider,
+          name: r'deleteTodoUsecaseProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$deleteTodoUsecaseHash,
+          dependencies: DeleteTodoUsecaseFamily._dependencies,
+          allTransitiveDependencies:
+              DeleteTodoUsecaseFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  DeleteTodoUsecaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final int id;
+
+  @override
+  Override overrideWith(
+    FutureOr<void> Function(DeleteTodoUsecaseRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: DeleteTodoUsecaseProvider._internal(
+        (ref) => create(ref as DeleteTodoUsecaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<void> createElement() {
+    return _DeleteTodoUsecaseProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is DeleteTodoUsecaseProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin DeleteTodoUsecaseRef on AutoDisposeFutureProviderRef<void> {
+  /// The parameter `id` of this provider.
+  int get id;
+}
+
+class _DeleteTodoUsecaseProviderElement
+    extends AutoDisposeFutureProviderElement<void> with DeleteTodoUsecaseRef {
+  _DeleteTodoUsecaseProviderElement(super.provider);
+
+  @override
+  int get id => (origin as DeleteTodoUsecaseProvider).id;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

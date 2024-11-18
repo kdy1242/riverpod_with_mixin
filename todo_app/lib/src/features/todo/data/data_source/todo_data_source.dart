@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:todo_app/core/enum/todo_filter.dart';
-import 'package:todo_app/src/features/todo/data/model/todo_model.dart';
+import 'package:todo_app/core/util/data_indexes.dart';
+import 'package:todo_app/src/features/todo/data/model/todo_response_model.dart';
 
 part 'todo_data_source.g.dart';
 
@@ -14,7 +14,7 @@ abstract class TodoDataSource {
     required DateTime date,
   });
 
-  Future<List<TodoModel>> readTodo(TodoFilter filter);
+  Future<TodoResponseModel> readTodo([List<DataIndexes>? dataIndexes]);
 
   Future<void> updateTodo({
     required int id,
@@ -41,26 +41,18 @@ class TodoDataSourceImpl implements TodoDataSource {
   }
 
   @override
-  Future<List<TodoModel>> readTodo(TodoFilter filter) async {
-    final today = DateTime.now();
-    final startOfToday = DateTime(today.year, today.month, today.day);
-    final endOfToday = DateTime(today.year, today.month, today.day, 23, 59, 59);
-
+  Future<TodoResponseModel> readTodo([List<DataIndexes>? dataIndexes]) async {
     PostgrestFilterBuilder<List<Map<String, dynamic>>> query = _table.select();
 
-    if (filter == TodoFilter.today) {
-      query = query
-          .gte('date', startOfToday.toIso8601String())
-          .lte('date', endOfToday.toIso8601String());
-    } else if (filter == TodoFilter.upcoming) {
-      query = query.gt('date', endOfToday.toIso8601String());
-    } else if (filter == TodoFilter.completed) {
-      query = query.not('completedAt', 'is', null);
+    if (dataIndexes != null) {
+      for (final index in dataIndexes) {
+        query = index.applyToQuery(query);
+      }
     }
 
-    final result = await query.order('date', ascending: true);
+    final res = await query.order('date', ascending: true).count();
 
-    return result.map((e) => TodoModel.fromMap(e)).toList();
+    return TodoResponseModel.fromPostgrestResponse(res);
   }
 
   @override

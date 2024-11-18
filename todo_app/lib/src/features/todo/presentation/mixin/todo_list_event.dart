@@ -8,10 +8,10 @@ mixin class TodoListEvent {
     required TodoFilter filter,
     required int id,
     required bool value,
-  }) async {
-    await ref.read(checkTodoProvider(id: id, value: value).future);
-    ref
-        .watch(todoListProvider(filter: filter).notifier)
-        .checkTodo(id: id, value: value);
-  }
+  }) async =>
+      await ref.read(checkTodoProvider(id: id, value: value).future).then((_) {
+        ref
+            .read(todoListProvider(filter: filter).notifier)
+            .checkTodo(id: id, value: value);
+      });
 }

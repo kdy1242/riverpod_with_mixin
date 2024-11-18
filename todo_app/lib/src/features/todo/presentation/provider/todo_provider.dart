@@ -35,6 +35,12 @@ class TodoList extends _$TodoList {
       ]);
     }
   }
+
+  void deleteTodo({required int id}) {
+    if (state.value != null) {
+      state = AsyncData([...state.value!..removeWhere((e) => e.id == id)]);
+    }
+  }
 }
 
 @riverpod
@@ -44,3 +50,10 @@ Future<void> checkTodo(
   required bool value,
 }) async =>
     await ref.watch(checkTodoUsecaseProvider(id: id, value: value).future);
+
+@riverpod
+Future<void> deleteTodo(
+  DeleteTodoRef ref, {
+  required int id,
+}) async =>
+    await ref.watch(deleteTodoUsecaseProvider(id: id));

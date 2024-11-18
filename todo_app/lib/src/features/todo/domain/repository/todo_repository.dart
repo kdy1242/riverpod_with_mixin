@@ -1,4 +1,4 @@
-import 'package:todo_app/core/enum/todo_filter.dart';
+import 'package:todo_app/core/util/data_indexes.dart';
 import 'package:todo_app/src/features/todo/domain/entity/todo_entity.dart';
 
 abstract class TodoRepository {
@@ -7,7 +7,9 @@ abstract class TodoRepository {
     required DateTime date,
   });
 
-  Future<List<Todo>> readTodo(TodoFilter filter);
+  Future<List<Todo>> readTodo([List<DataIndexes>? dataIndexes]);
+
+  Future<int> getTodoCount([List<DataIndexes>? dataIndexes]);
 
   Future<void> updateTodo({
     required int id,

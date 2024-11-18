@@ -314,7 +314,135 @@ class _CheckTodoProviderElement extends AutoDisposeFutureProviderElement<void>
   bool get value => (origin as CheckTodoProvider).value;
 }
 
-String _$todoListHash() => r'49bb9c0623ffaa087f81dd64402628d9e1f1ed1b';
+String _$deleteTodoHash() => r'c9fbbb170f9252c00e0ced966ef4df96dd378180';
+
+/// See also [deleteTodo].
+@ProviderFor(deleteTodo)
+const deleteTodoProvider = DeleteTodoFamily();
+
+/// See also [deleteTodo].
+class DeleteTodoFamily extends Family<AsyncValue<void>> {
+  /// See also [deleteTodo].
+  const DeleteTodoFamily();
+
+  /// See also [deleteTodo].
+  DeleteTodoProvider call({
+    required int id,
+  }) {
+    return DeleteTodoProvider(
+      id: id,
+    );
+  }
+
+  @override
+  DeleteTodoProvider getProviderOverride(
+    covariant DeleteTodoProvider provider,
+  ) {
+    return call(
+      id: provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'deleteTodoProvider';
+}
+
+/// See also [deleteTodo].
+class DeleteTodoProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [deleteTodo].
+  DeleteTodoProvider({
+    required int id,
+  }) : this._internal(
+          (ref) => deleteTodo(
+            ref as DeleteTodoRef,
+            id: id,
+          ),
+          from: deleteTodoProvider,
+          name: r'deleteTodoProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$deleteTodoHash,
+          dependencies: DeleteTodoFamily._dependencies,
+          allTransitiveDependencies:
+              DeleteTodoFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  DeleteTodoProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final int id;
+
+  @override
+  Override overrideWith(
+    FutureOr<void> Function(DeleteTodoRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: DeleteTodoProvider._internal(
+        (ref) => create(ref as DeleteTodoRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<void> createElement() {
+    return _DeleteTodoProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is DeleteTodoProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin DeleteTodoRef on AutoDisposeFutureProviderRef<void> {
+  /// The parameter `id` of this provider.
+  int get id;
+}
+
+class _DeleteTodoProviderElement extends AutoDisposeFutureProviderElement<void>
+    with DeleteTodoRef {
+  _DeleteTodoProviderElement(super.provider);
+
+  @override
+  int get id => (origin as DeleteTodoProvider).id;
+}
+
+String _$todoListHash() => r'8ec23a99ed86e996a5f259909e2455a2aade1a6d';
 
 abstract class _$TodoList
     extends BuildlessAutoDisposeAsyncNotifier<List<Todo>> {
