@@ -172,74 +172,264 @@ class _CreateTodoUsecaseProviderElement
   DateTime get date => (origin as CreateTodoUsecaseProvider).date;
 }
 
-String _$readTodayTodoUsecaseHash() =>
-    r'544c9317eeb7081aee6d0cf6b704793659ee708b';
+String _$readTodoUsecaseHash() => r'34d01d80e7d864d6091ace11d905878bc7c75a4b';
 
-/// See also [readTodayTodoUsecase].
-@ProviderFor(readTodayTodoUsecase)
-final readTodayTodoUsecaseProvider =
-    AutoDisposeFutureProvider<List<Todo>>.internal(
-  readTodayTodoUsecase,
-  name: r'readTodayTodoUsecaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$readTodayTodoUsecaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+/// See also [readTodoUsecase].
+@ProviderFor(readTodoUsecase)
+const readTodoUsecaseProvider = ReadTodoUsecaseFamily();
 
-typedef ReadTodayTodoUsecaseRef = AutoDisposeFutureProviderRef<List<Todo>>;
-String _$readUpcomingTodoUsecaseHash() =>
-    r'ce63d22fc535c4c14f76a89b524c492aa0f8f5a9';
+/// See also [readTodoUsecase].
+class ReadTodoUsecaseFamily extends Family<AsyncValue<List<Todo>>> {
+  /// See also [readTodoUsecase].
+  const ReadTodoUsecaseFamily();
 
-/// See also [readUpcomingTodoUsecase].
-@ProviderFor(readUpcomingTodoUsecase)
-final readUpcomingTodoUsecaseProvider =
-    AutoDisposeFutureProvider<List<Todo>>.internal(
-  readUpcomingTodoUsecase,
-  name: r'readUpcomingTodoUsecaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$readUpcomingTodoUsecaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+  /// See also [readTodoUsecase].
+  ReadTodoUsecaseProvider call({
+    required TodoFilter filter,
+  }) {
+    return ReadTodoUsecaseProvider(
+      filter: filter,
+    );
+  }
 
-typedef ReadUpcomingTodoUsecaseRef = AutoDisposeFutureProviderRef<List<Todo>>;
-String _$readAllTodoUsecaseHash() =>
-    r'6e74b8300c56706c40d334575370528fa5be841e';
+  @override
+  ReadTodoUsecaseProvider getProviderOverride(
+    covariant ReadTodoUsecaseProvider provider,
+  ) {
+    return call(
+      filter: provider.filter,
+    );
+  }
 
-/// See also [readAllTodoUsecase].
-@ProviderFor(readAllTodoUsecase)
-final readAllTodoUsecaseProvider =
-    AutoDisposeFutureProvider<List<Todo>>.internal(
-  readAllTodoUsecase,
-  name: r'readAllTodoUsecaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$readAllTodoUsecaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
-typedef ReadAllTodoUsecaseRef = AutoDisposeFutureProviderRef<List<Todo>>;
-String _$readCompletedTodoUsecaseHash() =>
-    r'6a1e1b5b27e3078b5f19046c2d853dfc64693d1e';
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
 
-/// See also [readCompletedTodoUsecase].
-@ProviderFor(readCompletedTodoUsecase)
-final readCompletedTodoUsecaseProvider =
-    AutoDisposeFutureProvider<List<Todo>>.internal(
-  readCompletedTodoUsecase,
-  name: r'readCompletedTodoUsecaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$readCompletedTodoUsecaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
-typedef ReadCompletedTodoUsecaseRef = AutoDisposeFutureProviderRef<List<Todo>>;
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'readTodoUsecaseProvider';
+}
+
+/// See also [readTodoUsecase].
+class ReadTodoUsecaseProvider extends AutoDisposeFutureProvider<List<Todo>> {
+  /// See also [readTodoUsecase].
+  ReadTodoUsecaseProvider({
+    required TodoFilter filter,
+  }) : this._internal(
+          (ref) => readTodoUsecase(
+            ref as ReadTodoUsecaseRef,
+            filter: filter,
+          ),
+          from: readTodoUsecaseProvider,
+          name: r'readTodoUsecaseProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$readTodoUsecaseHash,
+          dependencies: ReadTodoUsecaseFamily._dependencies,
+          allTransitiveDependencies:
+              ReadTodoUsecaseFamily._allTransitiveDependencies,
+          filter: filter,
+        );
+
+  ReadTodoUsecaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.filter,
+  }) : super.internal();
+
+  final TodoFilter filter;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Todo>> Function(ReadTodoUsecaseRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: ReadTodoUsecaseProvider._internal(
+        (ref) => create(ref as ReadTodoUsecaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        filter: filter,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Todo>> createElement() {
+    return _ReadTodoUsecaseProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ReadTodoUsecaseProvider && other.filter == filter;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, filter.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin ReadTodoUsecaseRef on AutoDisposeFutureProviderRef<List<Todo>> {
+  /// The parameter `filter` of this provider.
+  TodoFilter get filter;
+}
+
+class _ReadTodoUsecaseProviderElement
+    extends AutoDisposeFutureProviderElement<List<Todo>>
+    with ReadTodoUsecaseRef {
+  _ReadTodoUsecaseProviderElement(super.provider);
+
+  @override
+  TodoFilter get filter => (origin as ReadTodoUsecaseProvider).filter;
+}
+
+String _$getTodoCountUsecaseHash() =>
+    r'41587a082bc02565990a200af2c2268f461609aa';
+
+/// See also [getTodoCountUsecase].
+@ProviderFor(getTodoCountUsecase)
+const getTodoCountUsecaseProvider = GetTodoCountUsecaseFamily();
+
+/// See also [getTodoCountUsecase].
+class GetTodoCountUsecaseFamily extends Family<AsyncValue<int>> {
+  /// See also [getTodoCountUsecase].
+  const GetTodoCountUsecaseFamily();
+
+  /// See also [getTodoCountUsecase].
+  GetTodoCountUsecaseProvider call({
+    required TodoFilter filter,
+  }) {
+    return GetTodoCountUsecaseProvider(
+      filter: filter,
+    );
+  }
+
+  @override
+  GetTodoCountUsecaseProvider getProviderOverride(
+    covariant GetTodoCountUsecaseProvider provider,
+  ) {
+    return call(
+      filter: provider.filter,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getTodoCountUsecaseProvider';
+}
+
+/// See also [getTodoCountUsecase].
+class GetTodoCountUsecaseProvider extends AutoDisposeFutureProvider<int> {
+  /// See also [getTodoCountUsecase].
+  GetTodoCountUsecaseProvider({
+    required TodoFilter filter,
+  }) : this._internal(
+          (ref) => getTodoCountUsecase(
+            ref as GetTodoCountUsecaseRef,
+            filter: filter,
+          ),
+          from: getTodoCountUsecaseProvider,
+          name: r'getTodoCountUsecaseProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getTodoCountUsecaseHash,
+          dependencies: GetTodoCountUsecaseFamily._dependencies,
+          allTransitiveDependencies:
+              GetTodoCountUsecaseFamily._allTransitiveDependencies,
+          filter: filter,
+        );
+
+  GetTodoCountUsecaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.filter,
+  }) : super.internal();
+
+  final TodoFilter filter;
+
+  @override
+  Override overrideWith(
+    FutureOr<int> Function(GetTodoCountUsecaseRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetTodoCountUsecaseProvider._internal(
+        (ref) => create(ref as GetTodoCountUsecaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        filter: filter,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<int> createElement() {
+    return _GetTodoCountUsecaseProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetTodoCountUsecaseProvider && other.filter == filter;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, filter.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GetTodoCountUsecaseRef on AutoDisposeFutureProviderRef<int> {
+  /// The parameter `filter` of this provider.
+  TodoFilter get filter;
+}
+
+class _GetTodoCountUsecaseProviderElement
+    extends AutoDisposeFutureProviderElement<int> with GetTodoCountUsecaseRef {
+  _GetTodoCountUsecaseProviderElement(super.provider);
+
+  @override
+  TodoFilter get filter => (origin as GetTodoCountUsecaseProvider).filter;
+}
+
 String _$checkTodoUsecaseHash() => r'fe15bac38ed875da4ae81400ae115fce52dbec0f';
 
 /// See also [checkTodoUsecase].

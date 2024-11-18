@@ -13,7 +13,7 @@ class FilterMenuCard extends StatelessWidget {
   final String title;
   final IconData icon;
   final Color iconBackgroundColor;
-  final int count;
+  final String count;
   final Function() onTap;
 
   @override
@@ -47,7 +47,7 @@ class FilterMenuCard extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  count.toString(),
+                  count,
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w700,

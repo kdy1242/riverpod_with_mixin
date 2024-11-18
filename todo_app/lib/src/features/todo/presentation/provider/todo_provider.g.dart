@@ -172,6 +172,133 @@ class _CreateTodoProviderElement extends AutoDisposeFutureProviderElement<void>
   DateTime get date => (origin as CreateTodoProvider).date;
 }
 
+String _$todoCountHash() => r'c06c5609c329d57dfe6fd05b10559ef5d016fc1e';
+
+/// See also [todoCount].
+@ProviderFor(todoCount)
+const todoCountProvider = TodoCountFamily();
+
+/// See also [todoCount].
+class TodoCountFamily extends Family<AsyncValue<int>> {
+  /// See also [todoCount].
+  const TodoCountFamily();
+
+  /// See also [todoCount].
+  TodoCountProvider call({
+    required TodoFilter filter,
+  }) {
+    return TodoCountProvider(
+      filter: filter,
+    );
+  }
+
+  @override
+  TodoCountProvider getProviderOverride(
+    covariant TodoCountProvider provider,
+  ) {
+    return call(
+      filter: provider.filter,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'todoCountProvider';
+}
+
+/// See also [todoCount].
+class TodoCountProvider extends AutoDisposeFutureProvider<int> {
+  /// See also [todoCount].
+  TodoCountProvider({
+    required TodoFilter filter,
+  }) : this._internal(
+          (ref) => todoCount(
+            ref as TodoCountRef,
+            filter: filter,
+          ),
+          from: todoCountProvider,
+          name: r'todoCountProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$todoCountHash,
+          dependencies: TodoCountFamily._dependencies,
+          allTransitiveDependencies: TodoCountFamily._allTransitiveDependencies,
+          filter: filter,
+        );
+
+  TodoCountProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.filter,
+  }) : super.internal();
+
+  final TodoFilter filter;
+
+  @override
+  Override overrideWith(
+    FutureOr<int> Function(TodoCountRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: TodoCountProvider._internal(
+        (ref) => create(ref as TodoCountRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        filter: filter,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<int> createElement() {
+    return _TodoCountProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is TodoCountProvider && other.filter == filter;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, filter.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin TodoCountRef on AutoDisposeFutureProviderRef<int> {
+  /// The parameter `filter` of this provider.
+  TodoFilter get filter;
+}
+
+class _TodoCountProviderElement extends AutoDisposeFutureProviderElement<int>
+    with TodoCountRef {
+  _TodoCountProviderElement(super.provider);
+
+  @override
+  TodoFilter get filter => (origin as TodoCountProvider).filter;
+}
+
 String _$checkTodoHash() => r'1bd1efa2f955e575ce4ea345c0d6b8437a3040d4';
 
 /// See also [checkTodo].
@@ -442,7 +569,7 @@ class _DeleteTodoProviderElement extends AutoDisposeFutureProviderElement<void>
   int get id => (origin as DeleteTodoProvider).id;
 }
 
-String _$todoListHash() => r'8ec23a99ed86e996a5f259909e2455a2aade1a6d';
+String _$todoListHash() => r'e061ac80d5af6a883f94f165c2d494fc6319e2da';
 
 abstract class _$TodoList
     extends BuildlessAutoDisposeAsyncNotifier<List<Todo>> {

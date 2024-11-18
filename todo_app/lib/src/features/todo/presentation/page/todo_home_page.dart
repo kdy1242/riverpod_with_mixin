@@ -1,16 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_app/core/enum/todo_filter.dart';
 import 'package:todo_app/src/features/todo/presentation/mixin/todo_home_event.dart';
+import 'package:todo_app/src/features/todo/presentation/mixin/todo_home_state.dart';
 import 'package:todo_app/src/features/todo/presentation/widget/filter_menu_card.dart';
 import 'package:todo_app/src/widget/todo_app_bar.dart';
 
-class TodoHomePage extends StatelessWidget with TodoHomeEvent {
+class TodoHomePage extends ConsumerWidget with TodoHomeState, TodoHomeEvent {
   const TodoHomePage({super.key});
 
   static const String route = '/';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: const TodoAppBar(title: 'todo'),
       body: GridView.builder(
@@ -26,7 +30,14 @@ class TodoHomePage extends StatelessWidget with TodoHomeEvent {
           title: TodoFilter.values[index].title,
           icon: TodoFilter.values[index].icon,
           iconBackgroundColor: TodoFilter.values[index].color,
-          count: 5,
+          count: todoCount(ref, TodoFilter.values[index]).when(
+            data: (value) => value.toString(),
+            error: (error, stackTrace) {
+              log('에러남', error: error, stackTrace: stackTrace);
+              return '···';
+            },
+            loading: () => '···',
+          ),
           onTap: () => routeToTodoListPage(context, TodoFilter.values[index]),
         ),
       ),

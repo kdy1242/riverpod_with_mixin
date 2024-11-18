@@ -17,13 +17,11 @@ Future<void> createTodo(
 class TodoList extends _$TodoList {
   @override
   Future<List<Todo>> build({required TodoFilter filter}) {
-    return switch (filter) {
-      TodoFilter.today => ref.watch(readTodayTodoUsecaseProvider.future),
-      TodoFilter.upcoming => ref.watch(readUpcomingTodoUsecaseProvider.future),
-      TodoFilter.all => ref.watch(readAllTodoUsecaseProvider.future),
-      TodoFilter.completed =>
-        ref.watch(readCompletedTodoUsecaseProvider.future),
-    };
+    ref.onDispose(() {
+      ref.invalidate(readTodoUsecaseProvider(filter: filter));
+    });
+
+    return ref.watch(readTodoUsecaseProvider(filter: filter).future);
   }
 
   void checkTodo({required int id, required bool value}) {
@@ -41,6 +39,15 @@ class TodoList extends _$TodoList {
       state = AsyncData([...state.value!..removeWhere((e) => e.id == id)]);
     }
   }
+}
+
+@riverpod
+Future<int> todoCount(TodoCountRef ref, {required TodoFilter filter}) {
+  ref.onDispose(() {
+    ref.invalidate(getTodoCountUsecaseProvider(filter: filter));
+  });
+
+  return ref.watch(getTodoCountUsecaseProvider(filter: filter).future);
 }
 
 @riverpod
