@@ -18,8 +18,7 @@ abstract class TodoDataSource {
 
   Future<void> updateTodo({
     required String id,
-    String? text,
-    DateTime? date,
+    required Map<String, dynamic> data,
   });
 
   Future<void> deleteTodo({
@@ -65,14 +64,12 @@ class TodoDataSourceImpl implements TodoDataSource {
   }
 
   @override
-  Future<void> updateTodo({required String id, String? text, DateTime? date}) {
-    // TODO: implement updateTodo
-    throw UnimplementedError();
-  }
+  Future<void> updateTodo({
+    required String id,
+    required Map<String, dynamic> data,
+  }) async =>
+      await _table.update(data);
 
   @override
-  Future<void> deleteTodo({required String id}) {
-    // TODO: implement deleteTodo
-    throw UnimplementedError();
-  }
+  Future<void> deleteTodo({required String id}) => _table.delete().eq('id', id);
 }

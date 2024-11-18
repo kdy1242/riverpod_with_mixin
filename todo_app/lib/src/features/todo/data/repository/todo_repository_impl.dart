@@ -32,14 +32,13 @@ class TodoRepositoryImpl implements TodoRepository {
   @override
   Future<void> updateTodo({
     required String id,
-    String? text,
-    DateTime? date,
+    required Map<String, dynamic> data,
   }) async =>
-      _source.updateTodo(id: id, text: text, date: date);
+      await _source.updateTodo(id: id, data: data);
 
   @override
   Future<void> deleteTodo({
     required String id,
-  }) =>
-      _source.deleteTodo(id: id);
+  }) async =>
+      await _source.deleteTodo(id: id);
 }

@@ -172,6 +172,151 @@ class _CreateTodoProviderElement extends AutoDisposeFutureProviderElement<void>
   DateTime get date => (origin as CreateTodoProvider).date;
 }
 
+String _$completeTodoHash() => r'087fa1b4d850be22dadc2e1d061986e4de7c4b8d';
+
+/// See also [completeTodo].
+@ProviderFor(completeTodo)
+const completeTodoProvider = CompleteTodoFamily();
+
+/// See also [completeTodo].
+class CompleteTodoFamily extends Family<AsyncValue<void>> {
+  /// See also [completeTodo].
+  const CompleteTodoFamily();
+
+  /// See also [completeTodo].
+  CompleteTodoProvider call({
+    required String id,
+    required bool value,
+  }) {
+    return CompleteTodoProvider(
+      id: id,
+      value: value,
+    );
+  }
+
+  @override
+  CompleteTodoProvider getProviderOverride(
+    covariant CompleteTodoProvider provider,
+  ) {
+    return call(
+      id: provider.id,
+      value: provider.value,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'completeTodoProvider';
+}
+
+/// See also [completeTodo].
+class CompleteTodoProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [completeTodo].
+  CompleteTodoProvider({
+    required String id,
+    required bool value,
+  }) : this._internal(
+          (ref) => completeTodo(
+            ref as CompleteTodoRef,
+            id: id,
+            value: value,
+          ),
+          from: completeTodoProvider,
+          name: r'completeTodoProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$completeTodoHash,
+          dependencies: CompleteTodoFamily._dependencies,
+          allTransitiveDependencies:
+              CompleteTodoFamily._allTransitiveDependencies,
+          id: id,
+          value: value,
+        );
+
+  CompleteTodoProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+    required this.value,
+  }) : super.internal();
+
+  final String id;
+  final bool value;
+
+  @override
+  Override overrideWith(
+    FutureOr<void> Function(CompleteTodoRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CompleteTodoProvider._internal(
+        (ref) => create(ref as CompleteTodoRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+        value: value,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<void> createElement() {
+    return _CompleteTodoProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is CompleteTodoProvider &&
+        other.id == id &&
+        other.value == value;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+    hash = _SystemHash.combine(hash, value.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin CompleteTodoRef on AutoDisposeFutureProviderRef<void> {
+  /// The parameter `id` of this provider.
+  String get id;
+
+  /// The parameter `value` of this provider.
+  bool get value;
+}
+
+class _CompleteTodoProviderElement
+    extends AutoDisposeFutureProviderElement<void> with CompleteTodoRef {
+  _CompleteTodoProviderElement(super.provider);
+
+  @override
+  String get id => (origin as CompleteTodoProvider).id;
+  @override
+  bool get value => (origin as CompleteTodoProvider).value;
+}
+
 String _$todayTodoListHash() => r'6edb5493ad6fcc3f2b8674bc48f7581d47d12d2a';
 
 /// See also [TodayTodoList].

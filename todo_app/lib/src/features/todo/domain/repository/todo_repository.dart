@@ -11,8 +11,7 @@ abstract class TodoRepository {
 
   Future<void> updateTodo({
     required String id,
-    String? text,
-    DateTime? date,
+    required Map<String, dynamic> data,
   });
 
   Future<void> deleteTodo({

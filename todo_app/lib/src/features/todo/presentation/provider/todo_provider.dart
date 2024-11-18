@@ -37,3 +37,11 @@ class CompletedTodoList extends _$CompletedTodoList {
   Future<List<Todo>> build() =>
       ref.watch(readCompletedTodoUsecaseProvider.future);
 }
+
+@riverpod
+Future<void> completeTodo(
+  CompleteTodoRef ref, {
+  required String id,
+  required bool value,
+}) async =>
+    await ref.watch(completeTodoUsecaseProvider(id: id, value: value).future);

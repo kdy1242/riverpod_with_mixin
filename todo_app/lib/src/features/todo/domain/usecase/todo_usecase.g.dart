@@ -240,5 +240,150 @@ final readCompletedTodoUsecaseProvider =
 );
 
 typedef ReadCompletedTodoUsecaseRef = AutoDisposeFutureProviderRef<List<Todo>>;
+String _$completeTodoUsecaseHash() =>
+    r'd0dfbadc81ea594bdc7b629f7eed344910ada7ad';
+
+/// See also [completeTodoUsecase].
+@ProviderFor(completeTodoUsecase)
+const completeTodoUsecaseProvider = CompleteTodoUsecaseFamily();
+
+/// See also [completeTodoUsecase].
+class CompleteTodoUsecaseFamily extends Family<AsyncValue<void>> {
+  /// See also [completeTodoUsecase].
+  const CompleteTodoUsecaseFamily();
+
+  /// See also [completeTodoUsecase].
+  CompleteTodoUsecaseProvider call({
+    required String id,
+    required bool value,
+  }) {
+    return CompleteTodoUsecaseProvider(
+      id: id,
+      value: value,
+    );
+  }
+
+  @override
+  CompleteTodoUsecaseProvider getProviderOverride(
+    covariant CompleteTodoUsecaseProvider provider,
+  ) {
+    return call(
+      id: provider.id,
+      value: provider.value,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'completeTodoUsecaseProvider';
+}
+
+/// See also [completeTodoUsecase].
+class CompleteTodoUsecaseProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [completeTodoUsecase].
+  CompleteTodoUsecaseProvider({
+    required String id,
+    required bool value,
+  }) : this._internal(
+          (ref) => completeTodoUsecase(
+            ref as CompleteTodoUsecaseRef,
+            id: id,
+            value: value,
+          ),
+          from: completeTodoUsecaseProvider,
+          name: r'completeTodoUsecaseProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$completeTodoUsecaseHash,
+          dependencies: CompleteTodoUsecaseFamily._dependencies,
+          allTransitiveDependencies:
+              CompleteTodoUsecaseFamily._allTransitiveDependencies,
+          id: id,
+          value: value,
+        );
+
+  CompleteTodoUsecaseProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+    required this.value,
+  }) : super.internal();
+
+  final String id;
+  final bool value;
+
+  @override
+  Override overrideWith(
+    FutureOr<void> Function(CompleteTodoUsecaseRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CompleteTodoUsecaseProvider._internal(
+        (ref) => create(ref as CompleteTodoUsecaseRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+        value: value,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<void> createElement() {
+    return _CompleteTodoUsecaseProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is CompleteTodoUsecaseProvider &&
+        other.id == id &&
+        other.value == value;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+    hash = _SystemHash.combine(hash, value.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin CompleteTodoUsecaseRef on AutoDisposeFutureProviderRef<void> {
+  /// The parameter `id` of this provider.
+  String get id;
+
+  /// The parameter `value` of this provider.
+  bool get value;
+}
+
+class _CompleteTodoUsecaseProviderElement
+    extends AutoDisposeFutureProviderElement<void> with CompleteTodoUsecaseRef {
+  _CompleteTodoUsecaseProviderElement(super.provider);
+
+  @override
+  String get id => (origin as CompleteTodoUsecaseProvider).id;
+  @override
+  bool get value => (origin as CompleteTodoUsecaseProvider).value;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
