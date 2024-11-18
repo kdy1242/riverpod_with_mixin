@@ -17,12 +17,12 @@ abstract class TodoDataSource {
   Future<List<TodoModel>> readTodo(TodoFilter filter);
 
   Future<void> updateTodo({
-    required String id,
+    required int id,
     required Map<String, dynamic> data,
   });
 
   Future<void> deleteTodo({
-    required String id,
+    required int id,
   });
 }
 
@@ -65,11 +65,11 @@ class TodoDataSourceImpl implements TodoDataSource {
 
   @override
   Future<void> updateTodo({
-    required String id,
+    required int id,
     required Map<String, dynamic> data,
   }) async =>
       await _table.update(data);
 
   @override
-  Future<void> deleteTodo({required String id}) => _table.delete().eq('id', id);
+  Future<void> deleteTodo({required int id}) => _table.delete().eq('id', id);
 }

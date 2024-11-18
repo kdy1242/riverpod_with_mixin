@@ -241,7 +241,7 @@ final readCompletedTodoUsecaseProvider =
 
 typedef ReadCompletedTodoUsecaseRef = AutoDisposeFutureProviderRef<List<Todo>>;
 String _$completeTodoUsecaseHash() =>
-    r'd0dfbadc81ea594bdc7b629f7eed344910ada7ad';
+    r'e4b45262da03d7859f2bd81a9c19b4f03bf0ee2b';
 
 /// See also [completeTodoUsecase].
 @ProviderFor(completeTodoUsecase)
@@ -254,7 +254,7 @@ class CompleteTodoUsecaseFamily extends Family<AsyncValue<void>> {
 
   /// See also [completeTodoUsecase].
   CompleteTodoUsecaseProvider call({
-    required String id,
+    required int id,
     required bool value,
   }) {
     return CompleteTodoUsecaseProvider(
@@ -292,7 +292,7 @@ class CompleteTodoUsecaseFamily extends Family<AsyncValue<void>> {
 class CompleteTodoUsecaseProvider extends AutoDisposeFutureProvider<void> {
   /// See also [completeTodoUsecase].
   CompleteTodoUsecaseProvider({
-    required String id,
+    required int id,
     required bool value,
   }) : this._internal(
           (ref) => completeTodoUsecase(
@@ -324,7 +324,7 @@ class CompleteTodoUsecaseProvider extends AutoDisposeFutureProvider<void> {
     required this.value,
   }) : super.internal();
 
-  final String id;
+  final int id;
   final bool value;
 
   @override
@@ -370,7 +370,7 @@ class CompleteTodoUsecaseProvider extends AutoDisposeFutureProvider<void> {
 
 mixin CompleteTodoUsecaseRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `id` of this provider.
-  String get id;
+  int get id;
 
   /// The parameter `value` of this provider.
   bool get value;
@@ -381,7 +381,7 @@ class _CompleteTodoUsecaseProviderElement
   _CompleteTodoUsecaseProviderElement(super.provider);
 
   @override
-  String get id => (origin as CompleteTodoUsecaseProvider).id;
+  int get id => (origin as CompleteTodoUsecaseProvider).id;
   @override
   bool get value => (origin as CompleteTodoUsecaseProvider).value;
 }

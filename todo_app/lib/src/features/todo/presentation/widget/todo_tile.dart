@@ -9,6 +9,7 @@ class TodoTile extends StatelessWidget {
     required this.todoText,
     required this.date,
     required this.isCompleted,
+    required this.onCheck,
     required this.onEdit,
     required this.onDelete,
   });
@@ -16,6 +17,7 @@ class TodoTile extends StatelessWidget {
   final String todoText;
   final DateTime date;
   final bool isCompleted;
+  final Function(bool) onCheck;
   final Function() onEdit;
   final Function() onDelete;
 
@@ -47,7 +49,11 @@ class TodoTile extends StatelessWidget {
         child: CupertinoListTile(
           leading: CupertinoCheckbox(
             value: isCompleted,
-            onChanged: (value) {},
+            onChanged: (value) {
+              if (value != null) {
+                onCheck(value);
+              }
+            },
           ),
           title: Text(todoText),
           subtitle: Text(

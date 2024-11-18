@@ -10,11 +10,11 @@ abstract class TodoRepository {
   Future<List<Todo>> readTodo(TodoFilter filter);
 
   Future<void> updateTodo({
-    required String id,
+    required int id,
     required Map<String, dynamic> data,
   });
 
   Future<void> deleteTodo({
-    required String id,
+    required int id,
   });
 }

@@ -42,7 +42,7 @@ Future<List<Todo>> readCompletedTodoUsecase(ReadCompletedTodoUsecaseRef ref) {
 @riverpod
 Future<void> completeTodoUsecase(
   CompleteTodoUsecaseRef ref, {
-  required String id,
+  required int id,
   required bool value,
 }) {
   final repository = ref.watch(todoRepositoryProvider);

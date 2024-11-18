@@ -172,7 +172,7 @@ class _CreateTodoProviderElement extends AutoDisposeFutureProviderElement<void>
   DateTime get date => (origin as CreateTodoProvider).date;
 }
 
-String _$completeTodoHash() => r'087fa1b4d850be22dadc2e1d061986e4de7c4b8d';
+String _$completeTodoHash() => r'77187a04cc8dfbd4bf139c889b332080e4e09980';
 
 /// See also [completeTodo].
 @ProviderFor(completeTodo)
@@ -185,7 +185,7 @@ class CompleteTodoFamily extends Family<AsyncValue<void>> {
 
   /// See also [completeTodo].
   CompleteTodoProvider call({
-    required String id,
+    required int id,
     required bool value,
   }) {
     return CompleteTodoProvider(
@@ -223,7 +223,7 @@ class CompleteTodoFamily extends Family<AsyncValue<void>> {
 class CompleteTodoProvider extends AutoDisposeFutureProvider<void> {
   /// See also [completeTodo].
   CompleteTodoProvider({
-    required String id,
+    required int id,
     required bool value,
   }) : this._internal(
           (ref) => completeTodo(
@@ -255,7 +255,7 @@ class CompleteTodoProvider extends AutoDisposeFutureProvider<void> {
     required this.value,
   }) : super.internal();
 
-  final String id;
+  final int id;
   final bool value;
 
   @override
@@ -301,7 +301,7 @@ class CompleteTodoProvider extends AutoDisposeFutureProvider<void> {
 
 mixin CompleteTodoRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `id` of this provider.
-  String get id;
+  int get id;
 
   /// The parameter `value` of this provider.
   bool get value;
@@ -312,73 +312,152 @@ class _CompleteTodoProviderElement
   _CompleteTodoProviderElement(super.provider);
 
   @override
-  String get id => (origin as CompleteTodoProvider).id;
+  int get id => (origin as CompleteTodoProvider).id;
   @override
   bool get value => (origin as CompleteTodoProvider).value;
 }
 
-String _$todayTodoListHash() => r'6edb5493ad6fcc3f2b8674bc48f7581d47d12d2a';
+String _$todoListHash() => r'6cc644cd7c24e88a6a80f13065fbf9d659e845ae';
 
-/// See also [TodayTodoList].
-@ProviderFor(TodayTodoList)
-final todayTodoListProvider =
-    AutoDisposeAsyncNotifierProvider<TodayTodoList, List<Todo>>.internal(
-  TodayTodoList.new,
-  name: r'todayTodoListProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$todayTodoListHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+abstract class _$TodoList
+    extends BuildlessAutoDisposeAsyncNotifier<List<Todo>> {
+  late final TodoFilter filter;
 
-typedef _$TodayTodoList = AutoDisposeAsyncNotifier<List<Todo>>;
-String _$upcomingTodoListHash() => r'ae4b8ec599dc9fdd03da656940c121c07e73a29f';
+  FutureOr<List<Todo>> build({
+    required TodoFilter filter,
+  });
+}
 
-/// See also [UpcomingTodoList].
-@ProviderFor(UpcomingTodoList)
-final upcomingTodoListProvider =
-    AutoDisposeAsyncNotifierProvider<UpcomingTodoList, List<Todo>>.internal(
-  UpcomingTodoList.new,
-  name: r'upcomingTodoListProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$upcomingTodoListHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+/// See also [TodoList].
+@ProviderFor(TodoList)
+const todoListProvider = TodoListFamily();
 
-typedef _$UpcomingTodoList = AutoDisposeAsyncNotifier<List<Todo>>;
-String _$allTodoListHash() => r'276c7fc195e48d9036841ee3051cb4f6e37f4cc5';
+/// See also [TodoList].
+class TodoListFamily extends Family<AsyncValue<List<Todo>>> {
+  /// See also [TodoList].
+  const TodoListFamily();
 
-/// See also [AllTodoList].
-@ProviderFor(AllTodoList)
-final allTodoListProvider =
-    AutoDisposeAsyncNotifierProvider<AllTodoList, List<Todo>>.internal(
-  AllTodoList.new,
-  name: r'allTodoListProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$allTodoListHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+  /// See also [TodoList].
+  TodoListProvider call({
+    required TodoFilter filter,
+  }) {
+    return TodoListProvider(
+      filter: filter,
+    );
+  }
 
-typedef _$AllTodoList = AutoDisposeAsyncNotifier<List<Todo>>;
-String _$completedTodoListHash() => r'a532df9ab6374d101071a0e303d2229d970b8a77';
+  @override
+  TodoListProvider getProviderOverride(
+    covariant TodoListProvider provider,
+  ) {
+    return call(
+      filter: provider.filter,
+    );
+  }
 
-/// See also [CompletedTodoList].
-@ProviderFor(CompletedTodoList)
-final completedTodoListProvider =
-    AutoDisposeAsyncNotifierProvider<CompletedTodoList, List<Todo>>.internal(
-  CompletedTodoList.new,
-  name: r'completedTodoListProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$completedTodoListHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
-typedef _$CompletedTodoList = AutoDisposeAsyncNotifier<List<Todo>>;
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'todoListProvider';
+}
+
+/// See also [TodoList].
+class TodoListProvider
+    extends AutoDisposeAsyncNotifierProviderImpl<TodoList, List<Todo>> {
+  /// See also [TodoList].
+  TodoListProvider({
+    required TodoFilter filter,
+  }) : this._internal(
+          () => TodoList()..filter = filter,
+          from: todoListProvider,
+          name: r'todoListProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$todoListHash,
+          dependencies: TodoListFamily._dependencies,
+          allTransitiveDependencies: TodoListFamily._allTransitiveDependencies,
+          filter: filter,
+        );
+
+  TodoListProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.filter,
+  }) : super.internal();
+
+  final TodoFilter filter;
+
+  @override
+  FutureOr<List<Todo>> runNotifierBuild(
+    covariant TodoList notifier,
+  ) {
+    return notifier.build(
+      filter: filter,
+    );
+  }
+
+  @override
+  Override overrideWith(TodoList Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: TodoListProvider._internal(
+        () => create()..filter = filter,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        filter: filter,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeAsyncNotifierProviderElement<TodoList, List<Todo>>
+      createElement() {
+    return _TodoListProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is TodoListProvider && other.filter == filter;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, filter.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin TodoListRef on AutoDisposeAsyncNotifierProviderRef<List<Todo>> {
+  /// The parameter `filter` of this provider.
+  TodoFilter get filter;
+}
+
+class _TodoListProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<TodoList, List<Todo>>
+    with TodoListRef {
+  _TodoListProviderElement(super.provider);
+
+  @override
+  TodoFilter get filter => (origin as TodoListProvider).filter;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
