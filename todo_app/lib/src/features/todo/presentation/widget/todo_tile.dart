@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
@@ -23,41 +24,65 @@ class TodoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoContextMenu(
-      actions: [
-        CupertinoContextMenuAction(
-          trailingIcon: Icons.edit,
-          onPressed: () {
-            onEdit();
-            context.pop();
-          },
-          child: const Text('edit'),
-        ),
-        CupertinoContextMenuAction(
-          isDestructiveAction: true,
-          trailingIcon: Icons.delete,
-          onPressed: () {
-            onDelete();
-            context.pop();
-          },
-          child: const Text('delete'),
-        ),
-      ],
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        color: Colors.grey[100],
-        child: CupertinoListTile(
-          leading: CupertinoCheckbox(
-            value: isCompleted,
-            onChanged: (value) {
-              if (value != null) {
-                onCheck(value);
-              }
-            },
+    return Slidable(
+      endActionPane: ActionPane(
+        motion: const ScrollMotion(),
+        children: [
+          SlidableAction(
+            onPressed: (_) => onEdit(),
+            backgroundColor: CupertinoColors.systemGrey3,
+            foregroundColor: Colors.white,
+            icon: CupertinoIcons.pen,
+            label: 'edit',
           ),
-          title: Text(todoText),
-          subtitle: Text(
-            DateFormat('yyyy. M. d - hh:mm').format(date),
+          SlidableAction(
+            onPressed: (_) => onDelete(),
+            backgroundColor: CupertinoColors.destructiveRed,
+            foregroundColor: Colors.white,
+            icon: CupertinoIcons.trash,
+            label: 'delete',
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: CupertinoContextMenu(
+          actions: [
+            CupertinoContextMenuAction(
+              trailingIcon: Icons.edit,
+              onPressed: () {
+                onEdit();
+                context.pop();
+              },
+              child: const Text('edit'),
+            ),
+            CupertinoContextMenuAction(
+              isDestructiveAction: true,
+              trailingIcon: Icons.delete,
+              onPressed: () {
+                onDelete();
+                context.pop();
+              },
+              child: const Text('delete'),
+            ),
+          ],
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            color: Colors.grey[100],
+            child: CupertinoListTile(
+              leading: CupertinoCheckbox(
+                value: isCompleted,
+                onChanged: (value) {
+                  if (value != null) {
+                    onCheck(value);
+                  }
+                },
+              ),
+              title: Text(todoText),
+              subtitle: Text(
+                DateFormat('yyyy. M. d - hh:mm').format(date),
+              ),
+            ),
           ),
         ),
       ),

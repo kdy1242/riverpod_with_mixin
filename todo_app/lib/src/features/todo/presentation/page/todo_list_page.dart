@@ -38,9 +38,13 @@ class TodoListPage extends ConsumerWidget with TodoListState, TodoListEvent {
                 value: value,
               ),
               onEdit: () {},
-              onDelete: () {},
+              onDelete: () => deleteTodo(
+                ref: ref,
+                filter: filter,
+                id: data[index].id,
+              ),
             ),
-            separatorBuilder: (context, index) => const Divider(),
+            separatorBuilder: (context, index) => const Divider(height: 1),
           );
         },
         error: (error, stackTrace) {
