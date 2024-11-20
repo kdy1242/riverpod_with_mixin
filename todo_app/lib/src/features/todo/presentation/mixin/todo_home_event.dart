@@ -26,11 +26,12 @@ mixin class TodoHomeEvent {
     required DateTime date,
   }) {
     ref.read(createTodoProvider(text: text, date: date).future).then((_) {
+      ref.invalidate(todoCountProvider);
       context.pop();
     });
   }
 
-  void refresh(WidgetRef ref) {
+  void refreshTodoCount(WidgetRef ref) {
     ref.invalidate(todoCountProvider);
   }
 }

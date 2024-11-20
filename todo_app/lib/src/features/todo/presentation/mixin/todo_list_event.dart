@@ -29,4 +29,8 @@ mixin class TodoListEvent {
       ref.invalidate(todoCountProvider);
     });
   }
+
+  void refreshTodoList({required WidgetRef ref, required TodoFilter filter}) {
+    ref.invalidate(todoListProvider(filter: filter));
+  }
 }

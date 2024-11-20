@@ -25,26 +25,29 @@ class TodoListPage extends ConsumerWidget with TodoListState, TodoListEvent {
       appBar: TodoAppBar(title: filter.title),
       body: todoList(ref: ref, filter: filter).when(
         data: (data) {
-          return ListView.separated(
-            itemCount: data.length,
-            itemBuilder: (context, index) => TodoTile(
-              todoText: data[index].text,
-              date: data[index].date,
-              isCompleted: data[index].completedAt != null,
-              onCheck: (value) => checkTodo(
-                ref: ref,
-                filter: filter,
-                id: data[index].id,
-                value: value,
+          return RefreshIndicator(
+            onRefresh: () async => refreshTodoList(ref: ref, filter: filter),
+            child: ListView.separated(
+              itemCount: data.length,
+              itemBuilder: (context, index) => TodoTile(
+                todoText: data[index].text,
+                date: data[index].date,
+                isCompleted: data[index].completedAt != null,
+                onCheck: (value) => checkTodo(
+                  ref: ref,
+                  filter: filter,
+                  id: data[index].id,
+                  value: value,
+                ),
+                onEdit: () {},
+                onDelete: () => deleteTodo(
+                  ref: ref,
+                  filter: filter,
+                  id: data[index].id,
+                ),
               ),
-              onEdit: () {},
-              onDelete: () => deleteTodo(
-                ref: ref,
-                filter: filter,
-                id: data[index].id,
-              ),
+              separatorBuilder: (context, index) => const Divider(height: 1),
             ),
-            separatorBuilder: (context, index) => const Divider(height: 1),
           );
         },
         error: (error, stackTrace) {

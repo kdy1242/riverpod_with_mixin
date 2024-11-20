@@ -19,7 +19,7 @@ class TodoHomePage extends ConsumerWidget with TodoHomeState, TodoHomeEvent {
     return Scaffold(
       appBar: const TodoAppBar(title: 'todo'),
       body: RefreshIndicator(
-        onRefresh: () async => refresh(ref),
+        onRefresh: () async => refreshTodoCount(ref),
         child: GridView.builder(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
