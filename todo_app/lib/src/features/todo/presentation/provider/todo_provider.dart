@@ -1,3 +1,4 @@
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:todo_app/core/enum/todo_filter.dart';
 import 'package:todo_app/src/features/todo/domain/entity/todo_entity.dart';
@@ -37,6 +38,38 @@ class TodoList extends _$TodoList {
   void deleteTodo({required int id}) {
     if (state.value != null) {
       state = AsyncData([...state.value!..removeWhere((e) => e.id == id)]);
+    }
+  }
+}
+
+@riverpod
+class TodoPaging extends _$TodoPaging {
+  @override
+  Raw<PagingController<int?, Todo>> build() {
+    final PagingController<int?, Todo> controller =
+        PagingController(firstPageKey: null);
+
+    ref.onDispose(() {
+      controller.dispose();
+    });
+
+    return controller;
+  }
+
+  void checkTodo({required int id, required bool value}) {
+    if (state.itemList != null) {
+      int index = state.itemList!.indexWhere((e) => e.id == id);
+
+      state.itemList = [
+        ...state.itemList!
+          ..[index].completedAt = (value ? DateTime.now() : null)
+      ];
+    }
+  }
+
+  void deleteTodo({required int id}) {
+    if (state.itemList != null) {
+      state.itemList = [...state.itemList!..removeWhere((e) => e.id == id)];
     }
   }
 }

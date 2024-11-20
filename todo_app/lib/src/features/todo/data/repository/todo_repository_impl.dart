@@ -26,14 +26,17 @@ class TodoRepositoryImpl implements TodoRepository {
       await _source.createTodo(text: text, date: date);
 
   @override
-  Future<List<Todo>> readTodo([List<DataIndexes>? dataIndexes]) async {
-    final res = await _source.readTodo(dataIndexes);
+  Future<List<Todo>> readTodo({
+    List<DataIndexes>? dataIndexes,
+    int? limit,
+  }) async {
+    final res = await _source.readTodo(dataIndexes: dataIndexes, limit: limit);
     return res.data.map((e) => e.toEntity()).toList();
   }
 
   @override
-  Future<int> getTodoCount([List<DataIndexes>? dataIndexes]) async {
-    final res = await _source.readTodo(dataIndexes);
+  Future<int> getTodoCount({List<DataIndexes>? dataIndexes}) async {
+    final res = await _source.readTodo(dataIndexes: dataIndexes);
     return res.count;
   }
 

@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:todo_app/core/enum/todo_filter.dart';
 import 'package:todo_app/core/util/data_indexes.dart';
+import 'package:todo_app/core/util/page_size.dart';
 import 'package:todo_app/src/features/todo/data/repository/todo_repository_impl.dart';
 import 'package:todo_app/src/features/todo/domain/entity/todo_entity.dart';
 
@@ -20,6 +21,7 @@ Future<void> createTodoUsecase(
 Future<List<Todo>> readTodoUsecase(
   ReadTodoUsecaseRef ref, {
   required TodoFilter filter,
+  DateTime? queryCursor,
 }) async {
   final repository = ref.watch(todoRepositoryProvider);
 
@@ -27,7 +29,7 @@ Future<List<Todo>> readTodoUsecase(
   final startOfToday = DateTime(today.year, today.month, today.day);
   final endOfToday = DateTime(today.year, today.month, today.day, 23, 59, 59);
 
-  return await repository.readTodo(switch (filter) {
+  List<DataIndexes> dataIndexes = switch (filter) {
     TodoFilter.today => [
         DataGreaterThanOrEqual(
           key: 'date',
@@ -48,7 +50,16 @@ Future<List<Todo>> readTodoUsecase(
         const DataNot(key: 'completedAt', operator: 'is', value: null),
       ],
     TodoFilter.all => [],
-  });
+  };
+
+  if (queryCursor != null) {
+    dataIndexes.add(DataGreaterThanOrEqual(key: 'date', value: queryCursor));
+  }
+
+  return await repository.readTodo(
+    dataIndexes: dataIndexes,
+    limit: PageSize.todo,
+  );
 }
 
 @riverpod
@@ -62,28 +73,30 @@ Future<int> getTodoCountUsecase(
   final startOfToday = DateTime(today.year, today.month, today.day);
   final endOfToday = DateTime(today.year, today.month, today.day, 23, 59, 59);
 
-  return await repository.getTodoCount(switch (filter) {
-    TodoFilter.today => [
-        DataGreaterThanOrEqual(
-          key: 'date',
-          value: startOfToday.toIso8601String(),
-        ),
-        DataLessThanOrEqual(
-          key: 'date',
-          value: endOfToday.toIso8601String(),
-        ),
-      ],
-    TodoFilter.upcoming => [
-        DataGreaterThan(
-          key: 'date',
-          value: endOfToday.toIso8601String(),
-        ),
-      ],
-    TodoFilter.completed => [
-        const DataNot(key: 'completedAt', operator: 'is', value: null),
-      ],
-    TodoFilter.all => [],
-  });
+  return await repository.getTodoCount(
+    dataIndexes: switch (filter) {
+      TodoFilter.today => [
+          DataGreaterThanOrEqual(
+            key: 'date',
+            value: startOfToday.toIso8601String(),
+          ),
+          DataLessThanOrEqual(
+            key: 'date',
+            value: endOfToday.toIso8601String(),
+          ),
+        ],
+      TodoFilter.upcoming => [
+          DataGreaterThan(
+            key: 'date',
+            value: endOfToday.toIso8601String(),
+          ),
+        ],
+      TodoFilter.completed => [
+          const DataNot(key: 'completedAt', operator: 'is', value: null),
+        ],
+      TodoFilter.all => [],
+    },
+  );
 }
 
 @riverpod

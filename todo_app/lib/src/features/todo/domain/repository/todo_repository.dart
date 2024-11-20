@@ -7,9 +7,12 @@ abstract class TodoRepository {
     required DateTime date,
   });
 
-  Future<List<Todo>> readTodo([List<DataIndexes>? dataIndexes]);
+  Future<List<Todo>> readTodo({
+    List<DataIndexes>? dataIndexes,
+    int? limit,
+  });
 
-  Future<int> getTodoCount([List<DataIndexes>? dataIndexes]);
+  Future<int> getTodoCount({List<DataIndexes>? dataIndexes});
 
   Future<void> updateTodo({
     required int id,

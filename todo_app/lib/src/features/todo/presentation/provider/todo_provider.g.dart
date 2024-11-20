@@ -711,5 +711,21 @@ class _TodoListProviderElement
   @override
   TodoFilter get filter => (origin as TodoListProvider).filter;
 }
+
+String _$todoPagingHash() => r'd3c7c91c874e3d64256de366b315094f531afb3c';
+
+/// See also [TodoPaging].
+@ProviderFor(TodoPaging)
+final todoPagingProvider = AutoDisposeNotifierProvider<TodoPaging,
+    Raw<PagingController<int?, Todo>>>.internal(
+  TodoPaging.new,
+  name: r'todoPagingProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$todoPagingHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$TodoPaging = AutoDisposeNotifier<Raw<PagingController<int?, Todo>>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

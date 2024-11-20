@@ -172,7 +172,7 @@ class _CreateTodoUsecaseProviderElement
   DateTime get date => (origin as CreateTodoUsecaseProvider).date;
 }
 
-String _$readTodoUsecaseHash() => r'34d01d80e7d864d6091ace11d905878bc7c75a4b';
+String _$readTodoUsecaseHash() => r'513fe261ecc7f2b456b135a9a914cebce48bc99e';
 
 /// See also [readTodoUsecase].
 @ProviderFor(readTodoUsecase)
@@ -186,9 +186,11 @@ class ReadTodoUsecaseFamily extends Family<AsyncValue<List<Todo>>> {
   /// See also [readTodoUsecase].
   ReadTodoUsecaseProvider call({
     required TodoFilter filter,
+    DateTime? queryCursor,
   }) {
     return ReadTodoUsecaseProvider(
       filter: filter,
+      queryCursor: queryCursor,
     );
   }
 
@@ -198,6 +200,7 @@ class ReadTodoUsecaseFamily extends Family<AsyncValue<List<Todo>>> {
   ) {
     return call(
       filter: provider.filter,
+      queryCursor: provider.queryCursor,
     );
   }
 
@@ -221,10 +224,12 @@ class ReadTodoUsecaseProvider extends AutoDisposeFutureProvider<List<Todo>> {
   /// See also [readTodoUsecase].
   ReadTodoUsecaseProvider({
     required TodoFilter filter,
+    DateTime? queryCursor,
   }) : this._internal(
           (ref) => readTodoUsecase(
             ref as ReadTodoUsecaseRef,
             filter: filter,
+            queryCursor: queryCursor,
           ),
           from: readTodoUsecaseProvider,
           name: r'readTodoUsecaseProvider',
@@ -236,6 +241,7 @@ class ReadTodoUsecaseProvider extends AutoDisposeFutureProvider<List<Todo>> {
           allTransitiveDependencies:
               ReadTodoUsecaseFamily._allTransitiveDependencies,
           filter: filter,
+          queryCursor: queryCursor,
         );
 
   ReadTodoUsecaseProvider._internal(
@@ -246,9 +252,11 @@ class ReadTodoUsecaseProvider extends AutoDisposeFutureProvider<List<Todo>> {
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.filter,
+    required this.queryCursor,
   }) : super.internal();
 
   final TodoFilter filter;
+  final DateTime? queryCursor;
 
   @override
   Override overrideWith(
@@ -264,6 +272,7 @@ class ReadTodoUsecaseProvider extends AutoDisposeFutureProvider<List<Todo>> {
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         filter: filter,
+        queryCursor: queryCursor,
       ),
     );
   }
@@ -275,13 +284,16 @@ class ReadTodoUsecaseProvider extends AutoDisposeFutureProvider<List<Todo>> {
 
   @override
   bool operator ==(Object other) {
-    return other is ReadTodoUsecaseProvider && other.filter == filter;
+    return other is ReadTodoUsecaseProvider &&
+        other.filter == filter &&
+        other.queryCursor == queryCursor;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, filter.hashCode);
+    hash = _SystemHash.combine(hash, queryCursor.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -290,6 +302,9 @@ class ReadTodoUsecaseProvider extends AutoDisposeFutureProvider<List<Todo>> {
 mixin ReadTodoUsecaseRef on AutoDisposeFutureProviderRef<List<Todo>> {
   /// The parameter `filter` of this provider.
   TodoFilter get filter;
+
+  /// The parameter `queryCursor` of this provider.
+  DateTime? get queryCursor;
 }
 
 class _ReadTodoUsecaseProviderElement
@@ -299,10 +314,12 @@ class _ReadTodoUsecaseProviderElement
 
   @override
   TodoFilter get filter => (origin as ReadTodoUsecaseProvider).filter;
+  @override
+  DateTime? get queryCursor => (origin as ReadTodoUsecaseProvider).queryCursor;
 }
 
 String _$getTodoCountUsecaseHash() =>
-    r'41587a082bc02565990a200af2c2268f461609aa';
+    r'37710508bdbab78a03edf4f6c06a03955a13b916';
 
 /// See also [getTodoCountUsecase].
 @ProviderFor(getTodoCountUsecase)

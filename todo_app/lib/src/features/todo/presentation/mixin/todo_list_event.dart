@@ -33,4 +33,6 @@ mixin class TodoListEvent {
   void refreshTodoList({required WidgetRef ref, required TodoFilter filter}) {
     ref.invalidate(todoListProvider(filter: filter));
   }
+
+  Future<void> fetchPage(DateTime? lastItemDate) async {}
 }
