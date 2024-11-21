@@ -172,6 +172,151 @@ class _CreateTodoProviderElement extends AutoDisposeFutureProviderElement<void>
   DateTime get date => (origin as CreateTodoProvider).date;
 }
 
+String _$readTodoHash() => r'0f86697779ae4154043717f5d3b686118f46da35';
+
+/// See also [readTodo].
+@ProviderFor(readTodo)
+const readTodoProvider = ReadTodoFamily();
+
+/// See also [readTodo].
+class ReadTodoFamily extends Family<AsyncValue<List<Todo>>> {
+  /// See also [readTodo].
+  const ReadTodoFamily();
+
+  /// See also [readTodo].
+  ReadTodoProvider call({
+    required TodoFilter filter,
+    TodoPagingCursor? pagingCursor,
+  }) {
+    return ReadTodoProvider(
+      filter: filter,
+      pagingCursor: pagingCursor,
+    );
+  }
+
+  @override
+  ReadTodoProvider getProviderOverride(
+    covariant ReadTodoProvider provider,
+  ) {
+    return call(
+      filter: provider.filter,
+      pagingCursor: provider.pagingCursor,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'readTodoProvider';
+}
+
+/// See also [readTodo].
+class ReadTodoProvider extends AutoDisposeFutureProvider<List<Todo>> {
+  /// See also [readTodo].
+  ReadTodoProvider({
+    required TodoFilter filter,
+    TodoPagingCursor? pagingCursor,
+  }) : this._internal(
+          (ref) => readTodo(
+            ref as ReadTodoRef,
+            filter: filter,
+            pagingCursor: pagingCursor,
+          ),
+          from: readTodoProvider,
+          name: r'readTodoProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$readTodoHash,
+          dependencies: ReadTodoFamily._dependencies,
+          allTransitiveDependencies: ReadTodoFamily._allTransitiveDependencies,
+          filter: filter,
+          pagingCursor: pagingCursor,
+        );
+
+  ReadTodoProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.filter,
+    required this.pagingCursor,
+  }) : super.internal();
+
+  final TodoFilter filter;
+  final TodoPagingCursor? pagingCursor;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Todo>> Function(ReadTodoRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: ReadTodoProvider._internal(
+        (ref) => create(ref as ReadTodoRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        filter: filter,
+        pagingCursor: pagingCursor,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Todo>> createElement() {
+    return _ReadTodoProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ReadTodoProvider &&
+        other.filter == filter &&
+        other.pagingCursor == pagingCursor;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, filter.hashCode);
+    hash = _SystemHash.combine(hash, pagingCursor.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin ReadTodoRef on AutoDisposeFutureProviderRef<List<Todo>> {
+  /// The parameter `filter` of this provider.
+  TodoFilter get filter;
+
+  /// The parameter `pagingCursor` of this provider.
+  TodoPagingCursor? get pagingCursor;
+}
+
+class _ReadTodoProviderElement
+    extends AutoDisposeFutureProviderElement<List<Todo>> with ReadTodoRef {
+  _ReadTodoProviderElement(super.provider);
+
+  @override
+  TodoFilter get filter => (origin as ReadTodoProvider).filter;
+  @override
+  TodoPagingCursor? get pagingCursor =>
+      (origin as ReadTodoProvider).pagingCursor;
+}
+
 String _$todoCountHash() => r'c06c5609c329d57dfe6fd05b10559ef5d016fc1e';
 
 /// See also [todoCount].
@@ -569,155 +714,12 @@ class _DeleteTodoProviderElement extends AutoDisposeFutureProviderElement<void>
   int get id => (origin as DeleteTodoProvider).id;
 }
 
-String _$todoListHash() => r'e061ac80d5af6a883f94f165c2d494fc6319e2da';
-
-abstract class _$TodoList
-    extends BuildlessAutoDisposeAsyncNotifier<List<Todo>> {
-  late final TodoFilter filter;
-
-  FutureOr<List<Todo>> build({
-    required TodoFilter filter,
-  });
-}
-
-/// See also [TodoList].
-@ProviderFor(TodoList)
-const todoListProvider = TodoListFamily();
-
-/// See also [TodoList].
-class TodoListFamily extends Family<AsyncValue<List<Todo>>> {
-  /// See also [TodoList].
-  const TodoListFamily();
-
-  /// See also [TodoList].
-  TodoListProvider call({
-    required TodoFilter filter,
-  }) {
-    return TodoListProvider(
-      filter: filter,
-    );
-  }
-
-  @override
-  TodoListProvider getProviderOverride(
-    covariant TodoListProvider provider,
-  ) {
-    return call(
-      filter: provider.filter,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'todoListProvider';
-}
-
-/// See also [TodoList].
-class TodoListProvider
-    extends AutoDisposeAsyncNotifierProviderImpl<TodoList, List<Todo>> {
-  /// See also [TodoList].
-  TodoListProvider({
-    required TodoFilter filter,
-  }) : this._internal(
-          () => TodoList()..filter = filter,
-          from: todoListProvider,
-          name: r'todoListProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$todoListHash,
-          dependencies: TodoListFamily._dependencies,
-          allTransitiveDependencies: TodoListFamily._allTransitiveDependencies,
-          filter: filter,
-        );
-
-  TodoListProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.filter,
-  }) : super.internal();
-
-  final TodoFilter filter;
-
-  @override
-  FutureOr<List<Todo>> runNotifierBuild(
-    covariant TodoList notifier,
-  ) {
-    return notifier.build(
-      filter: filter,
-    );
-  }
-
-  @override
-  Override overrideWith(TodoList Function() create) {
-    return ProviderOverride(
-      origin: this,
-      override: TodoListProvider._internal(
-        () => create()..filter = filter,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        filter: filter,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeAsyncNotifierProviderElement<TodoList, List<Todo>>
-      createElement() {
-    return _TodoListProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is TodoListProvider && other.filter == filter;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, filter.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-mixin TodoListRef on AutoDisposeAsyncNotifierProviderRef<List<Todo>> {
-  /// The parameter `filter` of this provider.
-  TodoFilter get filter;
-}
-
-class _TodoListProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<TodoList, List<Todo>>
-    with TodoListRef {
-  _TodoListProviderElement(super.provider);
-
-  @override
-  TodoFilter get filter => (origin as TodoListProvider).filter;
-}
-
-String _$todoPagingHash() => r'd3c7c91c874e3d64256de366b315094f531afb3c';
+String _$todoPagingHash() => r'e32a551ce0cb7088e6226c98697de724e50372c3';
 
 /// See also [TodoPaging].
 @ProviderFor(TodoPaging)
 final todoPagingProvider = AutoDisposeNotifierProvider<TodoPaging,
-    Raw<PagingController<int?, Todo>>>.internal(
+    Raw<PagingController<TodoPagingCursor?, Todo>>>.internal(
   TodoPaging.new,
   name: r'todoPagingProvider',
   debugGetCreateSourceHash:
@@ -726,6 +728,7 @@ final todoPagingProvider = AutoDisposeNotifierProvider<TodoPaging,
   allTransitiveDependencies: null,
 );
 
-typedef _$TodoPaging = AutoDisposeNotifier<Raw<PagingController<int?, Todo>>>;
+typedef _$TodoPaging
+    = AutoDisposeNotifier<Raw<PagingController<TodoPagingCursor?, Todo>>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

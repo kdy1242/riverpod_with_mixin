@@ -1,4 +1,5 @@
 import 'package:todo_app/core/util/data_indexes.dart';
+import 'package:todo_app/core/util/paging_cursor.dart';
 import 'package:todo_app/src/features/todo/domain/entity/todo_entity.dart';
 
 abstract class TodoRepository {
@@ -9,6 +10,7 @@ abstract class TodoRepository {
 
   Future<List<Todo>> readTodo({
     List<DataIndexes>? dataIndexes,
+    TodoPagingCursor? pagingCursor,
     int? limit,
   });
 

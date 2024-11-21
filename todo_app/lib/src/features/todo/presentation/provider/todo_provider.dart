@@ -1,6 +1,8 @@
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:todo_app/core/enum/todo_filter.dart';
+import 'package:todo_app/core/util/page_size.dart';
+import 'package:todo_app/core/util/paging_cursor.dart';
 import 'package:todo_app/src/features/todo/domain/entity/todo_entity.dart';
 import 'package:todo_app/src/features/todo/domain/usecase/todo_usecase.dart';
 
@@ -15,38 +17,23 @@ Future<void> createTodo(
     await ref.watch(createTodoUsecaseProvider(text: text, date: date).future);
 
 @riverpod
-class TodoList extends _$TodoList {
-  @override
-  Future<List<Todo>> build({required TodoFilter filter}) {
-    ref.onDispose(() {
-      ref.invalidate(readTodoUsecaseProvider(filter: filter));
-    });
-
-    return ref.watch(readTodoUsecaseProvider(filter: filter).future);
-  }
-
-  void checkTodo({required int id, required bool value}) {
-    if (state.value != null) {
-      int index = state.value!.indexWhere((e) => e.id == id);
-
-      state = AsyncData([
-        ...state.value!..[index].completedAt = (value ? DateTime.now() : null)
-      ]);
-    }
-  }
-
-  void deleteTodo({required int id}) {
-    if (state.value != null) {
-      state = AsyncData([...state.value!..removeWhere((e) => e.id == id)]);
-    }
-  }
+Future<List<Todo>> readTodo(
+  ReadTodoRef ref, {
+  required TodoFilter filter,
+  TodoPagingCursor? pagingCursor,
+}) {
+  return ref.watch(readTodoUsecaseProvider(
+    filter: filter,
+    pagingCursor: pagingCursor,
+    limit: PageSize.todo,
+  ).future);
 }
 
 @riverpod
 class TodoPaging extends _$TodoPaging {
   @override
-  Raw<PagingController<int?, Todo>> build() {
-    final PagingController<int?, Todo> controller =
+  Raw<PagingController<TodoPagingCursor?, Todo>> build() {
+    final PagingController<TodoPagingCursor?, Todo> controller =
         PagingController(firstPageKey: null);
 
     ref.onDispose(() {
@@ -71,6 +58,10 @@ class TodoPaging extends _$TodoPaging {
     if (state.itemList != null) {
       state.itemList = [...state.itemList!..removeWhere((e) => e.id == id)];
     }
+  }
+
+  void refresh() {
+    state.refresh();
   }
 }
 

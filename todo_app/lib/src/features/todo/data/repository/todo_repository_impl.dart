@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:todo_app/core/util/data_indexes.dart';
+import 'package:todo_app/core/util/paging_cursor.dart';
 import 'package:todo_app/src/features/todo/data/data_source/todo_data_source.dart';
 import 'package:todo_app/src/features/todo/data/model/todo_model.dart';
 import 'package:todo_app/src/features/todo/domain/entity/todo_entity.dart';
@@ -28,9 +29,14 @@ class TodoRepositoryImpl implements TodoRepository {
   @override
   Future<List<Todo>> readTodo({
     List<DataIndexes>? dataIndexes,
+    TodoPagingCursor? pagingCursor,
     int? limit,
   }) async {
-    final res = await _source.readTodo(dataIndexes: dataIndexes, limit: limit);
+    final res = await _source.readTodo(
+      dataIndexes: dataIndexes,
+      pagingCursor: pagingCursor,
+      limit: limit,
+    );
     return res.data.map((e) => e.toEntity()).toList();
   }
 

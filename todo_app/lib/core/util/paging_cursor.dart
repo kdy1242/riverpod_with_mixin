@@ -21,13 +21,10 @@ class TodoPagingCursor extends PagingCursor {
 
   @override
   PostgrestTransformBuilder<List<Map<String, dynamic>>> getQuery(
-      PostgrestFilterBuilder<List<Map<String, dynamic>>> query) {
-    return query
-        .or(
-          'date.lt.${date.toIso8601String()},'
-          'and(date.eq.${date.toIso8601String()},id.lt.$id)',
-        )
-        .order('date', ascending: true)
-        .order('id', ascending: true);
+    PostgrestFilterBuilder<List<Map<String, dynamic>>> query,
+  ) {
+    return query.or(
+      'and(date.eq.${date.toIso8601String()},id.gt.$id),date.gt.${date.toIso8601String()}',
+    );
   }
 }

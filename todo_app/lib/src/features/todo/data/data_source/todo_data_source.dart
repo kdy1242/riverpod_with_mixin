@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo_app/core/util/data_indexes.dart';
-import 'package:todo_app/core/util/pagination_cursor.dart';
+import 'package:todo_app/core/util/paging_cursor.dart';
 import 'package:todo_app/src/features/todo/data/model/todo_response_model.dart';
 
 part 'todo_data_source.g.dart';
@@ -17,6 +17,7 @@ abstract class TodoDataSource {
 
   Future<TodoResponseModel> readTodo({
     List<DataIndexes>? dataIndexes,
+    TodoPagingCursor? pagingCursor,
     int? limit,
   });
 
@@ -59,10 +60,13 @@ class TodoDataSourceImpl implements TodoDataSource {
     }
 
     PostgrestTransformBuilder<List<Map<String, dynamic>>> transformQuery =
-        pagingCursor!.getQuery(query);
+        pagingCursor?.getQuery(query) ?? query;
 
     if (limit != null) {
-      transformQuery = transformQuery.limit(limit);
+      transformQuery = transformQuery
+          .order('date', ascending: true)
+          .order('id', ascending: true)
+          .limit(limit);
     }
 
     final res = await transformQuery.count();

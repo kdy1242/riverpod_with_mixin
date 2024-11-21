@@ -172,7 +172,7 @@ class _CreateTodoUsecaseProviderElement
   DateTime get date => (origin as CreateTodoUsecaseProvider).date;
 }
 
-String _$readTodoUsecaseHash() => r'513fe261ecc7f2b456b135a9a914cebce48bc99e';
+String _$readTodoUsecaseHash() => r'191e86bb64f6fad80d71c4c069c2ef0f99ca59f5';
 
 /// See also [readTodoUsecase].
 @ProviderFor(readTodoUsecase)
@@ -186,11 +186,13 @@ class ReadTodoUsecaseFamily extends Family<AsyncValue<List<Todo>>> {
   /// See also [readTodoUsecase].
   ReadTodoUsecaseProvider call({
     required TodoFilter filter,
-    DateTime? queryCursor,
+    TodoPagingCursor? pagingCursor,
+    int? limit,
   }) {
     return ReadTodoUsecaseProvider(
       filter: filter,
-      queryCursor: queryCursor,
+      pagingCursor: pagingCursor,
+      limit: limit,
     );
   }
 
@@ -200,7 +202,8 @@ class ReadTodoUsecaseFamily extends Family<AsyncValue<List<Todo>>> {
   ) {
     return call(
       filter: provider.filter,
-      queryCursor: provider.queryCursor,
+      pagingCursor: provider.pagingCursor,
+      limit: provider.limit,
     );
   }
 
@@ -224,12 +227,14 @@ class ReadTodoUsecaseProvider extends AutoDisposeFutureProvider<List<Todo>> {
   /// See also [readTodoUsecase].
   ReadTodoUsecaseProvider({
     required TodoFilter filter,
-    DateTime? queryCursor,
+    TodoPagingCursor? pagingCursor,
+    int? limit,
   }) : this._internal(
           (ref) => readTodoUsecase(
             ref as ReadTodoUsecaseRef,
             filter: filter,
-            queryCursor: queryCursor,
+            pagingCursor: pagingCursor,
+            limit: limit,
           ),
           from: readTodoUsecaseProvider,
           name: r'readTodoUsecaseProvider',
@@ -241,7 +246,8 @@ class ReadTodoUsecaseProvider extends AutoDisposeFutureProvider<List<Todo>> {
           allTransitiveDependencies:
               ReadTodoUsecaseFamily._allTransitiveDependencies,
           filter: filter,
-          queryCursor: queryCursor,
+          pagingCursor: pagingCursor,
+          limit: limit,
         );
 
   ReadTodoUsecaseProvider._internal(
@@ -252,11 +258,13 @@ class ReadTodoUsecaseProvider extends AutoDisposeFutureProvider<List<Todo>> {
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.filter,
-    required this.queryCursor,
+    required this.pagingCursor,
+    required this.limit,
   }) : super.internal();
 
   final TodoFilter filter;
-  final DateTime? queryCursor;
+  final TodoPagingCursor? pagingCursor;
+  final int? limit;
 
   @override
   Override overrideWith(
@@ -272,7 +280,8 @@ class ReadTodoUsecaseProvider extends AutoDisposeFutureProvider<List<Todo>> {
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         filter: filter,
-        queryCursor: queryCursor,
+        pagingCursor: pagingCursor,
+        limit: limit,
       ),
     );
   }
@@ -286,14 +295,16 @@ class ReadTodoUsecaseProvider extends AutoDisposeFutureProvider<List<Todo>> {
   bool operator ==(Object other) {
     return other is ReadTodoUsecaseProvider &&
         other.filter == filter &&
-        other.queryCursor == queryCursor;
+        other.pagingCursor == pagingCursor &&
+        other.limit == limit;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, filter.hashCode);
-    hash = _SystemHash.combine(hash, queryCursor.hashCode);
+    hash = _SystemHash.combine(hash, pagingCursor.hashCode);
+    hash = _SystemHash.combine(hash, limit.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -303,8 +314,11 @@ mixin ReadTodoUsecaseRef on AutoDisposeFutureProviderRef<List<Todo>> {
   /// The parameter `filter` of this provider.
   TodoFilter get filter;
 
-  /// The parameter `queryCursor` of this provider.
-  DateTime? get queryCursor;
+  /// The parameter `pagingCursor` of this provider.
+  TodoPagingCursor? get pagingCursor;
+
+  /// The parameter `limit` of this provider.
+  int? get limit;
 }
 
 class _ReadTodoUsecaseProviderElement
@@ -315,7 +329,10 @@ class _ReadTodoUsecaseProviderElement
   @override
   TodoFilter get filter => (origin as ReadTodoUsecaseProvider).filter;
   @override
-  DateTime? get queryCursor => (origin as ReadTodoUsecaseProvider).queryCursor;
+  TodoPagingCursor? get pagingCursor =>
+      (origin as ReadTodoUsecaseProvider).pagingCursor;
+  @override
+  int? get limit => (origin as ReadTodoUsecaseProvider).limit;
 }
 
 String _$getTodoCountUsecaseHash() =>

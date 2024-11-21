@@ -2,6 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:todo_app/core/enum/todo_filter.dart';
 import 'package:todo_app/core/util/data_indexes.dart';
 import 'package:todo_app/core/util/page_size.dart';
+import 'package:todo_app/core/util/paging_cursor.dart';
 import 'package:todo_app/src/features/todo/data/repository/todo_repository_impl.dart';
 import 'package:todo_app/src/features/todo/domain/entity/todo_entity.dart';
 
@@ -21,7 +22,8 @@ Future<void> createTodoUsecase(
 Future<List<Todo>> readTodoUsecase(
   ReadTodoUsecaseRef ref, {
   required TodoFilter filter,
-  DateTime? queryCursor,
+  TodoPagingCursor? pagingCursor,
+  int? limit,
 }) async {
   final repository = ref.watch(todoRepositoryProvider);
 
@@ -52,12 +54,9 @@ Future<List<Todo>> readTodoUsecase(
     TodoFilter.all => [],
   };
 
-  if (queryCursor != null) {
-    dataIndexes.add(DataGreaterThanOrEqual(key: 'date', value: queryCursor));
-  }
-
   return await repository.readTodo(
     dataIndexes: dataIndexes,
+    pagingCursor: pagingCursor,
     limit: PageSize.todo,
   );
 }
