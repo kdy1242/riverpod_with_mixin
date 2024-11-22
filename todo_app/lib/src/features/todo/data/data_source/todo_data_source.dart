@@ -60,13 +60,12 @@ class TodoDataSourceImpl implements TodoDataSource {
     }
 
     PostgrestTransformBuilder<List<Map<String, dynamic>>> transformQuery =
-        pagingCursor?.getQuery(query) ?? query;
+        (pagingCursor?.getQuery(query) ?? query)
+            .order('date', ascending: true)
+            .order('id', ascending: true);
 
     if (limit != null) {
-      transformQuery = transformQuery
-          .order('date', ascending: true)
-          .order('id', ascending: true)
-          .limit(limit);
+      transformQuery = transformQuery.limit(limit);
     }
 
     final res = await transformQuery.count();
